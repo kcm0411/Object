@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수정페이지</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- JQuery Import -->
+
+    <script type="module">
+
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
+        import { query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyB3ookWJ_UhcAQN3g_GFe8igPGrRhhSEPM",
+            authDomain: "object-4dce6.firebaseapp.com",
+            projectId: "object-4dce6",
+            storageBucket: "object-4dce6.appspot.com",
+            messagingSenderId: "1016569423981",
+            appId: "1:1016569423981:web:4742c10d53bc9ad4ef7764",
+            measurementId: "G-2ND0Q8WYC3"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        //Query String - id 값 가져오기
+        const Keydata = new URLSearchParams(location.search).get('date');
+
+        //데이터 넘길 변수 (9개)
+        let name;
+        let mbti;
+        let pw;
+        let img;
+        let blog;
+        let github;
+        let word;
+        let intro;
+        let date;
+
+        //DB에서 id 값에 맞는 특정 데이터 가져오기
+        const q = query(
+            collection(db, 'post'),
+            where('date', '==', Keydata)
+        );
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach((el) => {
+
+            name = el.data().name;
+            mbti = el.data().mbti;
+            pw = el.data().pw;
+            img = el.data().img;
+            blog = el.data().blog;
+            github = el.data().github;
+            word = el.data().word;
+            intro = el.data().intro;
+            date = el.data().date;
+
+            console.log(el.data()) // Test : 불러오기 완료 (QueryString 협의해야함)
+
+        });
+
+        //DB에서 가져온 데이터 화면에 보여주기
+         $("#name").val(name);
+        $("#mbti").val(mbti);
+        $("#pw").val(pw);
+        $("#img").val(img);
+        $("#picture").attr("src", img);
+        $("#blog").val(blog);
+        $("#github").val(github);
+        $("#word").val(word);
+        $("#intro").val(intro);
+        $("#date").val(date);
+
+    </script>
+
+</head>
+
+<body>
+
+    <header class="modify-header">
+        <h1>수정 페이지</h1>
+    </header>
+
+    <main class="modify-main">
+
+        <div class="modify-main-flex">
+
+            <div class="modify-main-container">
+                <label for="name">이름</label>
+                <input id="name" class="modify-main-container-title" type="text" placeholder="이름을 입력해주세요" />
+            </div>
+
+            <div class="modify-main-container">
+                <label for="mbti">MBTI</label>
+                <input id="mbti" class="modify-main-container-title" type="text" placeholder="MBTI를 입력해주세요" />
+            </div>
+
+            <!--
+            <div class="modify-main-img">
+                <img id="thumbnail" alt="..." src="./svg/image-regular.svg" />
+                <div class="modify-main-container">
+                    <label for="img">사진 선택</label>
+                    <input id="img" class="modify-main-container-img" type="file" accept="image/*" />
+                </div>
+            </div>
+            -->
+            <div class="modify-main-container">
+                <label for="img">이미지</label>
+                <input id="img" class="modify-main-container-title" type="text" placeholder="이미지 링크 주소를 입력해주세요" />
+                <img id="picture" src="" class="card-img-top" alt="...">
+            </div>
+
+            <div class="modify-main-container">
+                <label for="blog">블로그 주소</label>
+                <input id="blog" class="modify-main-container-title" type="text" placeholder="블로그 주소를 입력해주세요" />
+            </div>
+
+            <div class="modify-main-container">
+                <label for="github">깃허브 주소</label>
+                <input id="github" class="modify-main-container-title" type="text" placeholder="깃허브 주소를 입력해주세요" />
+            </div>
+
+            <div class="modify-main-container">
+                <label for="word">한마디</label>
+                <input id="word" class="modify-main-container-title" type="text" placeholder="나를 소개하는 한마디" />
+            </div>
+
+            <div class="modify-main-container">
+                <label for="intro">자기소개</label>
+                <textarea id="intro" placeholder="자신을 소개해주세요."></textarea>
+            </div>
+
+            <div class="modify-main-footer">
+                <button id="write" class="modify-main-footer-write-btn" type="button">작성</button>
+                <button id="cancel" class="modify-main-footer-cancle-btn" type="button">취소</button>
+            </div>
+
+    </main>
+</body>
+
+</html>
