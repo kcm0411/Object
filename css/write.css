@@ -17,6 +17,10 @@ main {
   margin: 0 auto;
 }
 
+.side-margin10 {
+  margin: 0 10px;
+}
+
 .side-margin50 {
   margin: 0 50px;
 }
@@ -154,4 +158,142 @@ main {
   background: #fff;
   border: 2px solid #dc3545;
   cursor: pointer;
+}
+
+.show-header {
+  width: 760px;
+  margin: 40px auto 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.show-header-editBtn {
+  width: 50px;
+  height: 30px;
+  margin-right: 15px;
+  color: white;
+  background: #7AC142;
+  border: 2px solid #7AC142;
+  border-radius: 1rem;
+  font-size: 14px;
+}
+
+.show-header-editBtn:hover {
+  color: #7AC142;
+  background: #fff;
+  border: 2px solid #7AC142;
+  cursor: pointer;
+}
+
+.show-header-deleteBtn {
+  width: 50px;
+  height: 30px;
+  margin-right: 20px;
+  color: white;
+  background: #dc3545;
+  border: 2px solid #dc3545;
+  border-radius: 1rem;
+  font-size: 14px;
+}
+
+.show-header-deleteBtn:hover {
+  color: black;
+  background: #fff;
+  border: 2px solid #dc3545;
+  cursor: pointer;
+}
+
+.show-container {
+  position: relative;
+}
+
+.show-container > label {
+  margin: 30px 32px 32px 16px; 
+  padding: 0 8px;  
+  position: absolute; 
+  top: -41px;
+  color: #7AC142; 
+  background-color: white; 
+  z-index: 1;
+}
+
+.show-intro {
+  width: 100%;
+  margin: 20px 0;
+  padding: 20px 20px;
+  border: 0.3px solid #7AC142;
+  font-size: 18px;
+  word-break: break-all;
+}
+
+.show-reply {
+  width: 760px;
+  margin: 100px auto 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.show-reply > input {
+  width: 150px;
+  height: 40px;
+  margin-right: 20px;
+  padding: 0 10px; 
+  border: 0.3px solid #7AC142;
+  border-radius: 5px; 
+  outline: none;
+  font-size: 16px;
+}
+
+.show-reply > textarea {
+  width: 590px;
+  height: 150px;
+  padding: 10px 10px;
+  border: 0.3px solid #7AC142;
+  outline: none;
+  font-size: 16px;
+}
+
+.show-reply-list {
+  width: 760px;
+  margin: 50px auto 0;
+}
+
+.show-reply-list > ul {
+  margin: 0;
+  padding: 0;
+}
+
+.show-reply-list > ul:last-child {
+  margin-bottom: 60px;
+}
+
+.show-reply-list > ul > li {
+  margin-top: 20px;
+  background-color: #FAFAFA;
+  list-style: none;
+}
+
+.show-reply-list-container {
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+}
+
+.show-reply-list-name {
+  font-size: 18px;
+}
+
+.show-reply-list-date {
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.show-reply-list-content {
+  padding: 0 35px;
+}
+
+.show-reply-list-content-border {
+  width: 700px;
+  margin: 8px auto 30px;
+  border-bottom: 1px solid #7AC142;
 }
