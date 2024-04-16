@@ -98,6 +98,10 @@ main {
   object-fit: cover;
 }
 
+.write-container-thumbnail > img:hover {
+  cursor: pointer;
+}
+
 .write-container-space130 {
   width: 130px;
 }
@@ -215,6 +219,37 @@ main {
   color: #7AC142; 
   background-color: white; 
   z-index: 1;
+}
+
+.show-container-img {
+  position: relative;
+}
+
+.show-container-img > label {
+  margin: 30px 32px 32px 16px; 
+  padding: 0 8px;  
+  position: absolute; 
+  top: -41px;
+  color: #7AC142; 
+  background-color: white; 
+  z-index: 1;
+}
+
+.show-container-thumbnail {
+  width: 250px;
+  height: 250px;
+  margin: 20px 0; 
+  position: relative;
+  border: 0.3px solid #7AC142;;
+}
+
+.show-container-thumbnail > img {
+  width: 220px;
+  height: 220px;
+  position: absolute; 
+  top: 15px;
+  left: 15px;
+  object-fit: cover;
 }
 
 .show-intro {
