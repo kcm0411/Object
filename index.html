@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -24,8 +25,9 @@
             /* 수평과 수직으로 가운데 정렬 */
             justify-content: center;
         }
+
         .form-brd {
-            
+
             width: 300px;
             display: flex;
             /* flexbox 레이아웃을 사용하여 요소를 가운데 정렬 */
@@ -35,11 +37,13 @@
             /* 수평과 수직으로 가운데 정렬 */
             justify-content: center;
         }
+
         /* 글쓰기 버튼 위치*/
-        .form-brd > button {
+        .form-brd>button {
             margin: 10px;
             margin-left: auto;
         }
+
         /* 내용 위치 */
         textarea {
             width: 300px;
@@ -49,8 +53,45 @@
             padding-top: 10px;
         }
         
-        
     </style>
+
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        
+
+        // Firebase 구성정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyB3ookWJ_UhcAQN3g_GFe8igPGrRhhSEPM",
+            authDomain: "object-4dce6.firebaseapp.com",
+            projectId: "object-4dce6",
+            storageBucket: "object-4dce6.appspot.com",
+            messagingSenderId: "1016569423981",
+            appId: "1:1016569423981:web:4742c10d53bc9ad4ef7764",
+            measurementId: "G-2ND0Q8WYC3"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        $('#Writingbtn').click(async function() {
+            
+            let name = $('#name').val();
+            let comment = $('#comment').val();
+
+            let doc = {
+                'name': name,
+                'comment': comment
+            };
+        await addDoc(collection(db,"guest"), doc);
+        alert('작성완료!');
+        console.log('ㅇㅇ');
+        })
+    </script>
 </head>
 
 <body>
@@ -115,47 +156,51 @@
             </div>
         </div>
     </div>
+
     <!-- /팀목표 카드 -->
-    <div class="card border-secondary mb-3" style="max-width: 18rem;">
-        <div class="card-header">팀 목표</div>
-        <div class="card-body text-dark">
-          <h5 class="card-title">오브젝트</h5>
-          <p class="card-text">우리팀 짱</p>
-        </div>
+    <!-- <div class="teambrd">
         <div class="card border-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header">팀 규칙</div>
+            <div class="card-header">팀 목표</div>
             <div class="card-body text-dark">
-              <h5 class="card-title">약속시간</h5>
-              <p class="card-text">점심시간 : 13:00 ~ 14:00</p>
+                <h5 class="card-title">오브젝트</h5>
+                <p class="card-text">우리팀 짱</p>
             </div>
             <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                <div class="card-header">MBTI</div>
+                <div class="card-header">팀 규칙</div>
                 <div class="card-body text-dark">
-                  <h5 class="card-title">T 5</h5>
-                  <p class="card-text">ISTJ, ESTJ, iSTP, ESTP, INTP</p>
+                    <h5 class="card-title">약속시간</h5>
+                    <p class="card-text">점심시간 : 13:00 ~ 14:00</p>
                 </div>
-    <!-- /방명록 -->
-    <div class="form-brd">
-        <h2>방명록</h2>
-        <tr>
-            <td class="header">이름</td>
-        </tr>
-        <tr>
-            <td><input type="text" placeholder="이름" name="title"></td>
-        </tr>
-        <tr>
-            <td class="header">내용</td>
-        </tr>
-        <tr>
-            <td><textarea placeholder="내용을 입력하세요" name="detail"></textarea></td>
-        </tr>
-        <tr>
-            <td class="form-btn"><button type="button" class="btn btn-outline-dark">글쓰기</button></td>
-        </tr>
-    </div>
-        
-    </div>
-    
+                <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">MBTI</div>
+                    <div class="card-body text-dark">
+                        <h5 class="card-title">T 5</h5>
+                        <p class="card-text">ISTJ, ESTJ, iSTP, ESTP, INTP</p>
+                    </div>
+                </div> -->
+
+                <!-- /방명록 -->
+                <div class="form-brd">
+                    <h2>방명록</h2>
+                    <tr>
+                        <td class="header">이름</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="name" placeholder="이름"></td>
+                    </tr>
+                    <tr>
+                        <td class="header">내용</td>
+                    </tr>
+                    <tr>
+                        <td><textarea id="comment" placeholder="내용을 입력하세요"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td class="form-btn"><button type="button" id="Writingbtn" class="btn btn-outline-dark">글쓰기</button></td>
+                    </tr>
+                </div>
+
+            </div>
+
 
 
 </body>
