@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        .title_logo {
+            height: 150px;
+            /*로고 높이 150*/
+            color: black;
+            /*텍스트 색상 : white*/
+
+            display: flex;
+            /* flexbox 레이아웃을 사용하여 요소를 가운데 정렬 */
+            flex-direction: column;
+            /* 세로 방향으로 배치 */
+            align-items: center;
+            /* 수평과 수직으로 가운데 정렬 */
+            justify-content: center;
+        }
+        .form-brd {
+            
+            width: 300px;
+            display: flex;
+            /* flexbox 레이아웃을 사용하여 요소를 가운데 정렬 */
+            flex-direction: column;
+            /* 세로 방향으로 배치 */
+            align-items: center;
+            /* 수평과 수직으로 가운데 정렬 */
+            justify-content: center;
+        }
+        /* 글쓰기 버튼 위치*/
+        .form-brd > button {
+            margin: 10px;
+            margin-left: auto;
+        }
+        /* 내용 위치 */
+        textarea {
+            width: 300px;
+            height: 200px;
+            border-radius: 5px;
+            padding-left: 10px;
+            padding-top: 10px;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    <div class="title_logo">
+        <h1>오브젝트</h1>
+    </div>
+    <!-- /상단바 -->
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-5">
+        <li><a href="#" class="nav-link px-2 text-secondary">오브젝트</a></li>
+        <li><a href="#" class="nav-link px-2 text-secondary">팀원소개</a></li>
+        <li><a href="#" class="nav-link px-2 text-secondary">팀목표</a></li>
+        <li><a href="#" class="nav-link px-2 text-secondary">방명록</a></li>
+    </ul>
+    <!-- 팀 카드 -->
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+        <div class="col">
+            <div class="card">
+                <img src="https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2Fd02a8694-7d1d-4a5f-abd1-e515ee60392b%2FIMG_6468.jpeg?table=block&id=0a284442-05e7-4cae-8710-e6467ef1ede3&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=1420&userId=&cache=v2"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">김현민</h5>
+                    <p class="card-text">24세</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">김창민</h5>
+                    <p class="card-text">28세</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2F4264cabe-9a72-4f58-ac48-fbe91f215ef7%2F%25EC%259C%25A0%25EA%25B7%25A0%25ED%2595%259C-%25EC%25A6%259D%25EB%25AA%2585%25EC%2582%25AC%25EC%25A7%2584.jpg?table=block&id=8673d13a-0214-4ad5-b4ee-e6cfc6775239&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=830&userId=&cache=v2"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">유균한</h5>
+                    <p class="card-text">30세</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">김경민</h5>
+                    <p class="card-text">25세</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2F59e0f203-980d-4812-b457-b187c9d65366%2FIMG_1405.jpg?table=block&id=b37c634a-73ca-48c2-a148-e4376e9305a6&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=2000&userId=&cache=v2"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">박태순</h5>
+                    <p class="card-text">34세</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /팀목표 카드 -->
+    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+        <div class="card-header">팀 목표</div>
+        <div class="card-body text-dark">
+          <h5 class="card-title">오브젝트</h5>
+          <p class="card-text">우리팀 짱</p>
+        </div>
+        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+            <div class="card-header">팀 규칙</div>
+            <div class="card-body text-dark">
+              <h5 class="card-title">약속시간</h5>
+              <p class="card-text">점심시간 : 13:00 ~ 14:00</p>
+            </div>
+            <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                <div class="card-header">MBTI</div>
+                <div class="card-body text-dark">
+                  <h5 class="card-title">T 5</h5>
+                  <p class="card-text">ISTJ, ESTJ, iSTP, ESTP, INTP</p>
+                </div>
+    <!-- /방명록 -->
+    <div class="form-brd">
+        <h2>방명록</h2>
+        <tr>
+            <td class="header">이름</td>
+        </tr>
+        <tr>
+            <td><input type="text" placeholder="이름" name="title"></td>
+        </tr>
+        <tr>
+            <td class="header">내용</td>
+        </tr>
+        <tr>
+            <td><textarea placeholder="내용을 입력하세요" name="detail"></textarea></td>
+        </tr>
+        <tr>
+            <td class="form-btn"><button type="button" class="btn btn-outline-dark">글쓰기</button></td>
+        </tr>
+    </div>
+        
+    </div>
+    
+
+
+</body>
+
+</html>

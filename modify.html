@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>수정페이지</title>
-
+    <link rel="stylesheet" href="./css/write.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- JQuery Import -->
 
     <script type="module">
@@ -159,65 +160,72 @@
 
 <body>
 
-    <header class="modify-header">
+    <header>
         <h1>수정 페이지</h1>
     </header>
 
-    <main class="modify-main">
+    <main>
 
-        <div class="modify-main-flex">
+        <div class="write-flex">
 
-            <div class="modify-main-container">
+            <div class="write-container">
                 <label for="name">이름</label>
-                <input id="name" class="modify-main-container-title" type="text" placeholder="이름을 입력해주세요" />
+                <input id="name" class="write-container-space250" type="text" placeholder="이름을 입력해주세요" />
             </div>
 
-            <div class="modify-main-container">
+            <div class="write-container side-margin50">
                 <label for="mbti">MBTI</label>
-                <input id="mbti" class="modify-main-container-title" type="text" placeholder="MBTI를 입력해주세요" />
+                <input id="mbti" class="write-container-space130" type="text" placeholder="MBTI" />
             </div>
+        
+        </div>
 
-            <!--
-            <div class="modify-main-img">
-                <img id="thumbnail" alt="..." src="./svg/image-regular.svg" />
-                <div class="modify-main-container">
-                    <label for="img">사진 선택</label>
-                    <input id="img" class="modify-main-container-img" type="file" accept="image/*" />
-                </div>
+        <div class="write-container-img">
+            <label for="img">사진</label>
+            <input id="img" class="write-container-input-file" type="file" accept="image/*" />
+            <div class="write-container-thumbnail">
+              <img id="thumbnail" alt="..." src="" />
             </div>
-            -->
-            <div class="modify-main-container">
-                <label for="img">이미지</label>
-                <input id="img" class="modify-main-container-title" type="text" placeholder="이미지 링크 주소를 입력해주세요" />
-                <img id="picture" src="" class="card-img-top" alt="...">
-            </div>
+        </div>
 
-            <div class="modify-main-container">
-                <label for="blog">블로그 주소</label>
-                <input id="blog" class="modify-main-container-title" type="text" placeholder="블로그 주소를 입력해주세요" />
-            </div>
+        <div class="modify-main-container">
+            <label for="img">이미지</label>
+            <input id="img" class="modify-main-container-title" type="text" placeholder="이미지 링크 주소를 입력해주세요" />
+            <img id="picture" src="" class="card-img-top" alt="...">
+        </div>
 
-            <div class="modify-main-container">
-                <label for="github">깃허브 주소</label>
-                <input id="github" class="modify-main-container-title" type="text" placeholder="깃허브 주소를 입력해주세요" />
-            </div>
+        <div class="write-container">
+            <label for="blog">블로그 주소</label>
+            <input id="blog" class="write-container-space500" type="text" placeholder="블로그 주소를 입력해주세요" />
+        </div>
 
-            <div class="modify-main-container">
-                <label for="word">한마디</label>
-                <input id="word" class="modify-main-container-title" type="text" placeholder="나를 소개하는 한마디" />
-            </div>
+        <div class="write-container">
+            <label for="github">깃허브 주소</label>
+            <input id="github" class="write-container-space500" type="text" placeholder="깃허브 주소를 입력해주세요" />
+        </div>
 
-            <div class="modify-main-container">
-                <label for="intro">자기소개</label>
-                <textarea id="intro" placeholder="자신을 소개해주세요."></textarea>
-            </div>
+        <div class="write-container">
+            <label for="word">한마디</label>
+            <input id="word" class="write-container-spaceAll" type="text" placeholder="한마디를 적어주세요" />
+        </div>
 
-            <div class="modify-main-footer">
-                <button id="write" class="modify-main-footer-write-btn" type="button">작성</button>
-                <button id="cancel" class="modify-main-footer-cancle-btn" type="button">취소</button>
-            </div>
+        <div class="write-container">
+            <label for="intro">자기소개</label>
+            <textarea id="intro" placeholder="자기소개를 적어주세요"></textarea>
+        </div>
+
+        <div class="write-footer">
+            <button id="introBtn" class="write-footer-introBtn" type="button">수정</button>
+            <button id="cancleBtn" class="write-footer-cancleBtn" type="button">취소</button>
+        </div>
 
     </main>
+
+    <script>
+        $("#thumbnail").on("click", function () {
+            $("#img").click();
+        })
+    </script>
 </body>
 
 </html>

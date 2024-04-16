@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/write.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <div class="show-header">
+    <button class="show-header-editBtn">수정</button>
+    <button class="show-header-deleteBtn">삭제</button>
+  </div>
+
+  <main>
+    <div class="write-flex">
+      <div class="write-container">
+        <label for="name">이름</label>
+        <input id="name" class="write-container-space250" readonly />
+      </div>
+
+      <div class="write-container side-margin50">
+        <label for="mbti">MBTI</label>
+        <input id="mbti" class="write-container-space130" readonly />
+      </div>
+    </div>
+
+    <div class="write-container-img">
+      <label for="img">사진</label>
+      <div class="write-container-thumbnail">
+        <img id="thumbnail" alt="..." src="" />
+      </div>
+    </div>
+
+    <div class="write-container">
+      <label for="blog">블로그 주소</label>
+      <input id="blog" class="write-container-space500" readonly />
+    </div>
+
+    <div class="write-container">
+      <label for="github">깃허브 주소</label>
+      <input id="github" class="write-container-space500" readonly />
+    </div>
+
+    <div class="write-container">
+      <label for="word">한마디</label>
+      <input id="word" class="write-container-spaceAll" readonly />
+    </div>
+
+    <div class="show-container">
+      <label for="intro">자기소개</label>
+      <div class="show-intro"></div>
+    </div>
+  </main>
+
+  <section class="show-reply">
+    <input id="replyName" type="text" placeholder="이름" />
+    <textarea id="comment" placeholder="댓글을 입력해주세요"></textarea>
+  </section>
+
+  <section class="show-reply-list">
+    <ul>
+      <li>
+        <div>
+          <div class="show-reply-list-container">
+            <div class="show-reply-list-name">유균한</div>
+            <span class="side-margin10">·</span>
+            <div class="show-reply-list-date">2024-02-05</div>
+          </div>
+          <div class="show-reply-list-content">댓글내용입니다</div>
+          <div class="show-reply-list-content-border"></div>
+          <br>
+        </div>
+      </li>
+
+      <li>
+        <div>
+          <div class="show-reply-list-container">
+            <div class="show-reply-list-name">유균한</div>
+            <span class="side-margin10">·</span>
+            <div class="show-reply-list-date">2024-02-05</div>
+          </div>
+          <div class="show-reply-list-content">댓글내용입니다</div>
+          <div class="show-reply-list-content-border"></div>
+          <br>
+        </div>
+      </li>
+
+      <li>
+        <div>
+          <div class="show-reply-list-container">
+            <div class="show-reply-list-name">유균한</div>
+            <span class="side-margin10">·</span>
+            <div class="show-reply-list-date">2024-02-05</div>
+          </div>
+          <div class="show-reply-list-content">댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다</div>
+          <div class="show-reply-list-content-border"></div>
+          <br>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+</body>
+</html>
