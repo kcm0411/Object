@@ -74,17 +74,17 @@
 
         //DB에서 가져온 데이터 화면에 보여주기
         $("#name").val(name);
-        $("#mbti").val(mbti);
-        //$("#pw").val(pw);
-        //$("#img").val(img);
-        $("#img2").val(img);
-        //$("#picture").attr("src", img);
-        $("#thumbnail").attr("src", img);
-        $("#blog").val(blog);
-        $("#github").val(github);
-        $("#word").val(word);
-        $("#intro").val(intro);
-        $("#date").val(date);
+            $("#mbti").val(mbti);
+            //$("#pw").val(pw);
+            //$("#img").val(img);
+            $("#img2").val(img); // 이미지 url 입력창
+            //$("#picture").attr("src", img);
+            $("#thumbnail").attr("src", img); 
+            $("#blog").val(blog);
+            $("#github").val(github);
+            $("#word").val(word);
+            $("#intro").val(intro);
+            $("#date").val(date);
 
         // 현재 날짜, 시간 을 "YYYY-MM-DD hh:mm:ss" format 으로 변경하는 function
         function dateFormat(date) {
@@ -102,59 +102,108 @@
 
         console.log(dateFormat(new Date())); // 날짜 형식 변환 테스트 완료
 
-        // //글 내용 수정 된 거 DB에 업데이트
-        // $('#write').click(async function () {
+        // 수정 버튼 클릭 시
+        $('#writeBtn').click(async function () {
 
-        //     let name_change = $('#name').val();
-        //     let mbti_change = $('#mbti').val();
-        //     // let pw_change = $('#pw').val();
-        //     let img_change = $('#img').val();
-        //     let blog_change = $('#blog').val();
-        //     let github_change = $('#github').val();
-        //     let word_change = $('#word').val();
-        //     let intro_change = $('#intro').val();
-        //     let date_change = $('#date').val();
+            if ($('#name').val() === "") {
+                alert("이름을 입력해주세요.")
+                return;
+            } else if ($('#mbti').val() === ""){
+                alert("MBTI를 입력해주세요.")
+                return;
+            } else if ($('#mbti').val() === ""){
+                alert("MBTI를 입력해주세요.")
+                return;
+            } else if ($('#img2').val() === ""){
+                alert("이미지를 입력해주세요.")
+                return;
+            } else if ($('#blog').val() === ""){
+                alert("블로그 주소를 입력해주세요.")
+                return;
+            } else if ($('#github').val() === ""){
+                alert("깃허브 주소를 입력해주세요.")
+                return;
+            } else if ($('#word').val() === ""){
+                alert("한마디를 입력해주세요.")
+                return;
+            } else if ($('#intro').val() === ""){
+                alert("자기소개를 입력해주세요.")
+                return;
+            }
 
-        //     const storage = getStorage(app);
+            // 새로 입력된 데이터 저장
+            let name_change = $('#name').val();
+            let mbti_change = $('#mbti').val();
+            // let pw_change = $('#pw').val();
+            let img_change = $('#img2').val();
+            let blog_change = $('#blog').val();
+            let github_change = $('#github').val();
+            let word_change = $('#word').val();
+            let intro_change = $('#intro').val();
+            let date_change = $('#date').val();
 
-        //     //// img 선택 시
-        //     // const file = document.querySelector('#img').files[0];
-        //     // let img_new;
+            // const storage = getStorage(app);
 
-        //     // const storageRef = ref(storage, 'images/' + file.name + date2); // 사진을 업로드하고
-        //     // uploadBytes(storageRef, file).then((snapshot) => {
-        //     //     console.log('Uploaded a blob or file!');
+            //// img 선택 시
+            // const file = document.querySelector('#img').files[0];
+            // let img_new;
 
-        //     //     getDownloadURL(snapshot.ref).then((url) => { // url을 받는다
-        //     //         console.log('File available at', url);
-        //     //         // ...
-        //     //         img_new = url;
-        //     //     }).then(async () => {
-        //     //         const minpRef = doc(db, "minp", "post" + date_id);
+            // const storageRef = ref(storage, 'images/' + file.name + date2); // 사진을 업로드하고
+            // uploadBytes(storageRef, file).then((snapshot) => {
+            //     console.log('Uploaded a blob or file!');
 
-        //     //         await updateDoc(minpRef, {
-        //     //             title: titleRef,
-        //     //             content: contentRef,
-        //     //             img: img_new
-        //     //         });
+            //     getDownloadURL(snapshot.ref).then((url) => { // url을 받는다
+            //         console.log('File available at', url);
+            //         // ...
+            //         img_new = url;
+            //     }).then(async () => {
+            //         const postRef = doc(db, "minp", "post" + date_id);
 
-        //     //         console.log("img  :", img_new);
-        //     //         location.href = `./show.html?date_id=${date_id}`;
-        //     //         alert('작성 완료'); // 작성 완료라는 알람을 띄운다
-        //     //     })
-        //     // });
-        //     //
+            //         await updateDoc(postRef, {
+            //             title: titleRef,
+            //             content: contentRef,
+            //             img: img_new
+            //         });
 
-        //     const minpRef = doc(db, "post", "post" + date_id);
+            //         console.log("img  :", img_new);
+            //         location.href = `./show.html?date_id=${date_id}`;
+            //         alert('작성 완료'); // 작성 완료라는 알람을 띄운다
+            //     })
+            // });
+            //
 
-        //     await updateDoc(minpRef, {
-        //         title: titleRef,
-        //         content: contentRef,
-        //         img: img
-        //     });
+            // const postRef = doc(db, "post", Keydata);
+            const postRef = doc(db, "post", "20240415190000");
 
-        //     location.href = `./show.html?date_id=${date_id}`;
-        // });
+            await updateDoc(postRef, {
+                  name   : name_change
+                , mbti   : mbti_change
+                , img    : img_change
+                , blog   : blog_change
+                , github : github_change
+                , word   : word_change
+                , intro  : intro_change
+                // , date   : date_change
+            });
+
+            // 페이지 벗어날 때 확인하지 않음
+            checkUnload = false;
+
+            alert('수정이 완료되었습니다.');
+            location.href = `./show.html`;
+            //location.href = `./show.html?date_id=${Keydata}`;
+            
+        });
+
+        // 페이지 이동 시 체크
+        var checkUnload = true;
+        $(window).on("beforeunload", function () {
+            if (checkUnload) return "이 페이지를 벗어나면 수정된 내용은 저장되지 않습니다.";
+
+        });
+        
+        // 취소버튼 클릭 시
+        $('#cancelBtn').click(async function() { history.back(); })
 
     </script>
 
@@ -179,18 +228,18 @@
                 <label for="mbti">MBTI</label>
                 <input id="mbti" class="write-container-space130" type="text" placeholder="MBTI" />
             </div>
-        
+
         </div>
 
         <div class="write-container-img">
             <label for="img">사진</label>
             <input id="img" class="write-container-input-file" type="file" accept="image/*" />
             <div class="write-container-thumbnail">
-              <img id="thumbnail" alt="..." src="" />
+                <img id="thumbnail" alt="..." src="" />
             </div>
         </div>
 
-        <div id="imgbox", class="modify-main-container">
+        <div id="imgbox" , class="modify-main-container">
             <label for="img2">이미지</label>
             <input id="img2" class="modify-main-container-title" type="text" placeholder="이미지 링크 주소를 입력해주세요" />
             <img id="picture" src="" class="card-img-top" alt="...">
@@ -217,8 +266,8 @@
         </div>
 
         <div class="write-footer">
-            <button id="introBtn" class="write-footer-introBtn" type="button">수정</button>
-            <button id="cancleBtn" class="write-footer-cancleBtn" type="button">취소</button>
+            <button id="writeBtn" class="write-footer-introBtn" type="button">수정</button>
+            <button id="cancelBtn" class="write-footer-cancleBtn" type="button">취소</button>
         </div>
 
     </main>
