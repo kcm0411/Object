@@ -7,6 +7,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
     <link rel="stylesheet" href="./css/index.css" />
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { query } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyB3ookWJ_UhcAQN3g_GFe8igPGrRhhSEPM",
+            authDomain: "object-4dce6.firebaseapp.com",
+            projectId: "object-4dce6",
+            storageBucket: "object-4dce6.appspot.com",
+            messagingSenderId: "1016569423981",
+            appId: "1:1016569423981:web:4742c10d53bc9ad4ef7764",
+            measurementId: "G-2ND0Q8WYC3"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        //방명록 Firebase 저장
+        $('#Writingbtn').click(async function () {
+
+            let name = $('#name').val();
+            let comment = $('#comment').val();
+
+            let doc = {
+                'name': name,
+                'comment': comment
+            };
+            await addDoc(collection(db, "guest"), doc);
+            alert('작성완료!');
+            window.location.reload();
+        })
+
+        // 현재 날짜, 시간 을 "YYYY-MM-DD hh:mm:ss" format 으로 변경하는 function
+        function dateFormat(date) {
+
+            let dateFormat = date.getFullYear() +
+
+                '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) +
+                '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate())) +
+                ' ' + ((date.getHours()) < 9 ? "0" + (date.getHours()) : (date.getHours())) +
+                ':' + ((date.getMinutes()) < 9 ? "0" + (date.getMinutes()) : (date.getMinutes())) +
+                ':' + ((date.getSeconds()) < 9 ? "0" + (date.getSeconds()) : (date.getSeconds()));
+
+            return dateFormat;
+        }
+
+        console.log(dateFormat(new Date())); // 날짜 형식 변환 테스트 완료
+
+
+
+        // //Firebase에서 게시물 정보 가져와서 카드 붙이기
+        let doc = await getDocs(collection(db, "post"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+
+            let date = row['date'];
+            let img = row['img'];
+            let name = row['name'];
+            let word = row['word'];
+            console.log(row);
+
+            let temp_html = `
+            <div class="col">
+            <a herf=".show.html?id=${date}"><div class="card">
+                <img src="${img}"class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">${name}</h5>
+                    <p class="card-text">${word}</p>
+                    </div>
+                </div></a>
+            </div>`;
+            $('#card').append(temp_html);
+        })
+
+
+        // // //카드 클릭시 show.html 페이지로 이동
+        // $(document).ready(function () {
+        //     $('#').on('click', function () {
+        //         // const URLSearchParams = new URLSearchParams(location.search).get('date');
+        //         // const date = $(this).data('date')
+        //         // console.log('date', date);
+        //         let date = "20240417"
+        //         const url = `./write.html?id=${date}`;
+        //         // console.log('url', url);
+        //         // window.location.href = url;
+        //     })
+        // })
+    </script>
 </head>
 <body>
     <header>
@@ -246,6 +340,9 @@
             </li>
         </ul>
     </section>
+
+    
+
 </body>
 
 </html>
