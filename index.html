@@ -52,7 +52,6 @@
             padding-left: 10px;
             padding-top: 10px;
         }
-        
     </style>
 
     <script type="module">
@@ -61,7 +60,7 @@
         import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        
+        import { query } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         // Firebase 구성정보 설정
         const firebaseConfig = {
@@ -77,10 +76,10 @@
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        
+
         //방명록 Firebase 저장
-        $('#Writingbtn').click(async function() {
-            
+        $('#Writingbtn').click(async function () {
+
             let name = $('#name').val();
             let comment = $('#comment').val();
 
@@ -88,41 +87,60 @@
                 'name': name,
                 'comment': comment
             };
-        await addDoc(collection(db,"guest"), doc);
-        alert('작성완료!');
-        window.location.reload();
+            await addDoc(collection(db, "guest"), doc);
+            alert('작성완료!');
+            window.location.reload();
         })
 
-        //Firebase에서 게시물 정보 가져와서 붙이기
-        let doc = await getDocs(collection(db,"post"));
-        docs.forEach((doc) => {
-            let row = doc.data();
+        // 현재 날짜, 시간 을 "YYYY-MM-DD hh:mm:ss" format 으로 변경하는 function
+        function dateFormat(date) {
 
-            let img = row['img'];
-            let name = row['name'];
-            let word = row['word'];
-            console.log(row);
+            let dateFormat = date.getFullYear() +
 
-            let temp_html = `
-            <div class="col">
-            <div class="card data-id=${newdate}">
-                <img src="${img}"class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${name}</h5>
-                    <p class="card-text">${word}</p>
-                    </div>
-                </div>
-            </div>`;
-            $('#card').append(temp_html);
-            })
-             
+                '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) +
+                '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate())) +
+                ' ' + ((date.getHours()) < 9 ? "0" + (date.getHours()) : (date.getHours())) +
+                ':' + ((date.getMinutes()) < 9 ? "0" + (date.getMinutes()) : (date.getMinutes())) +
+                ':' + ((date.getSeconds()) < 9 ? "0" + (date.getSeconds()) : (date.getSeconds()));
+
+            return dateFormat;
+        }
+
+        console.log(dateFormat(new Date())); // 날짜 형식 변환 테스트 완료
+
+       
+
+        // //Firebase에서 게시물 정보 가져와서 카드 붙이기
+        // let doc = await getDocs(collection(db, "post"));
+        // docs.forEach((doc) => {
+        //     let row = doc.data();
+
+        //     let img = row['img'];
+        //     let name = row['name'];
+        //     let word = row['word'];
+        //     console.log(row);
+
+        //     let temp_html = `
+        //     <div class="col">
+        //     <div class="card" id=${date}>
+        //         <img src="${img}"class="card-img-top" alt="...">
+        //         <div class="card-body">
+        //             <h5 class="card-title">${name}</h5>
+        //             <p class="card-text">${word}</p>
+        //             </div>
+        //         </div>
+        //     </div>`;
+        //     $('#card').append(temp_html);
+        // })
+
+
         // //카드 클릭시 show.html 페이지로 이동
-        $(document).ready(function(){
-            $('.card').on('click',function() {
+        $(document).ready(function () {
+            $('.card').on('click', function () {
+                const URLSearchParams = new URLSearchParams(location.search).get('date');
+                const date = $(this).data('date')
 
-                const id = $(this).data('newdate')
-
-                const url = `./shwo.html?id=${newdate}`;
+                const url = `./shwo.html?id=${date}`;
 
                 window.location.href = url;
             })
@@ -142,7 +160,7 @@
         <li><a href="#" class="nav-link px-2 text-secondary">방명록</a></li>
         <li><a href="write.html" class="nav-link px-2 text-secondary">글쓰기</a></li>
     </ul>
-    
+
     <!-- 팀 카드 -->
     <div class="row row-cols-1 row-cols-md-5 g-4">
         <div class="col">
@@ -217,27 +235,27 @@
                     </div>
                 </div> -->
 
-                <!-- /방명록 -->
-                <div class="form-brd">
-                    <h2>방명록</h2>
-                    <tr>
-                        <td class="header">이름</td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" id="name" placeholder="이름"></td>
-                    </tr>
-                    <tr>
-                        <td class="header">내용</td>
-                    </tr>
-                    <tr>
-                        <td><textarea id="comment" placeholder="내용을 입력하세요"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td class="form-btn"><button type="button" id="Writingbtn" class="btn btn-outline-dark">글쓰기</button></td>
-                    </tr>
-                </div>
+    <!-- /방명록 -->
+    <div class="form-brd">
+        <h2>방명록</h2>
+        <tr>
+            <td class="header">이름</td>
+        </tr>
+        <tr>
+            <td><input type="text" id="name" placeholder="이름"></td>
+        </tr>
+        <tr>
+            <td class="header">내용</td>
+        </tr>
+        <tr>
+            <td><textarea id="comment" placeholder="내용을 입력하세요"></textarea></td>
+        </tr>
+        <tr>
+            <td class="form-btn"><button type="button" id="Writingbtn" class="btn btn-outline-dark">글쓰기</button></td>
+        </tr>
+    </div>
 
-            </div>
+    </div>
 
 
 
