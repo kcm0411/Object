@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
   <link rel="stylesheet" href="./css/write.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
   <div class="show-header">
     <button class="show-header-editBtn">수정</button>
@@ -55,53 +57,64 @@
     </div>
   </main>
 
-  <section class="show-reply">
-    <input id="replyName" type="text" placeholder="이름" />
-    <textarea id="comment" placeholder="댓글을 입력해주세요"></textarea>
-  </section>
-
-  <section class="show-reply-list">
-    <ul>
-      <li>
+  <section class="section-reply">
+    <div class="section-reply-container">
+      <div class="section-reply-container-flex">
         <div>
-          <div class="show-reply-list-container">
-            <div class="show-reply-list-name">유균한</div>
-            <span class="side-margin10">·</span>
-            <div class="show-reply-list-date">2024-02-05</div>
+          <label for="replyName">이름</label>
+          <input id="replyName" type="text" placeholder="이름" />
+        </div>
+        <div>
+          <label for="comment">방명록</label>
+          <textarea id="comment" placeholder="방명록을 입력해주세요"></textarea>
+        </div>
+      </div>
+      <div class="section-reply-container-btn">
+        <button class="section-reply-container-btn-add">등록하기</button>
+      </div>
+    </div>
+
+    <ul class="section-reply-list">
+      <li>
+        <div class="section-reply-list-container">
+          <div class="section-reply-list-container-flex">
+            <div class="section-reply-list-name">유균한</div>
+            <span class="side-margin5">·</span>
+            <div class="section-reply-list-date">2024-02-05</div>
           </div>
-          <div class="show-reply-list-content">댓글내용입니다</div>
-          <div class="show-reply-list-content-border"></div>
-          <br>
+          <div class="section-reply-list-content">
+            댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다
+          </div>
         </div>
       </li>
 
       <li>
-        <div>
-          <div class="show-reply-list-container">
-            <div class="show-reply-list-name">유균한</div>
-            <span class="side-margin10">·</span>
-            <div class="show-reply-list-date">2024-02-05</div>
+        <div class="section-reply-list-container">
+          <div class="section-reply-list-container-flex">
+            <div class="section-reply-list-name">유균한</div>
+            <span class="side-margin5">·</span>
+            <div class="section-reply-list-date">2024-02-05</div>
           </div>
-          <div class="show-reply-list-content">댓글내용입니다</div>
-          <div class="show-reply-list-content-border"></div>
-          <br>
+          <div class="section-reply-list-content">
+            댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다
+          </div>
         </div>
       </li>
 
       <li>
-        <div>
-          <div class="show-reply-list-container">
-            <div class="show-reply-list-name">유균한</div>
-            <span class="side-margin10">·</span>
-            <div class="show-reply-list-date">2024-02-05</div>
+        <div class="section-reply-list-container">
+          <div class="section-reply-list-container-flex">
+            <div class="section-reply-list-name">유균한</div>
+            <span class="side-margin5">·</span>
+            <div class="section-reply-list-date">2024-02-05</div>
           </div>
-          <div class="show-reply-list-content">댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다</div>
-          <div class="show-reply-list-content-border"></div>
-          <br>
+          <div class="section-reply-list-content">
+            댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다
+          </div>
         </div>
       </li>
     </ul>
   </section>
-
 </body>
+
 </html>
