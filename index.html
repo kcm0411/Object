@@ -6,135 +6,253 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <style>
-        .title_logo {
-            height: 150px;
-            /*로고 높이 150*/
-            color: black;
-            /*텍스트 색상 : white*/
-
-            display: flex;
-            /* flexbox 레이아웃을 사용하여 요소를 가운데 정렬 */
-            flex-direction: column;
-            /* 세로 방향으로 배치 */
-            align-items: center;
-            /* 수평과 수직으로 가운데 정렬 */
-            justify-content: center;
-        }
-        .form-brd {
-            
-            width: 300px;
-            display: flex;
-            /* flexbox 레이아웃을 사용하여 요소를 가운데 정렬 */
-            flex-direction: column;
-            /* 세로 방향으로 배치 */
-            align-items: center;
-            /* 수평과 수직으로 가운데 정렬 */
-            justify-content: center;
-        }
-        /* 글쓰기 버튼 위치*/
-        .form-brd > button {
-            margin: 10px;
-            margin-left: auto;
-        }
-        /* 내용 위치 */
-        textarea {
-            width: 300px;
-            height: 200px;
-            border-radius: 5px;
-            padding-left: 10px;
-            padding-top: 10px;
-        }
-        
-        
-    </style>
+    <link rel="stylesheet" href="./css/index.css" />
 </head>
-
 <body>
-    <div class="title_logo">
-        <h1>오브젝트</h1>
-    </div>
-    <!-- /상단바 -->
-    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-5">
-        <li><a href="#" class="nav-link px-2 text-secondary">오브젝트</a></li>
-        <li><a href="#" class="nav-link px-2 text-secondary">팀원소개</a></li>
-        <li><a href="#" class="nav-link px-2 text-secondary">팀목표</a></li>
-        <li><a href="#" class="nav-link px-2 text-secondary">방명록</a></li>
-    </ul>
-    <!-- 팀 카드 -->
-    <div class="row row-cols-1 row-cols-md-5 g-4">
-        <div class="col">
-            <div class="card">
-                <img src="https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2Fd02a8694-7d1d-4a5f-abd1-e515ee60392b%2FIMG_6468.jpeg?table=block&id=0a284442-05e7-4cae-8710-e6467ef1ede3&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=1420&userId=&cache=v2"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">김현민</h5>
-                    <p class="card-text">24세</p>
+    <header>
+        <div class="main-header-container">
+            <h1>오브젝트</h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a>팀원 소개</a>
+                    </li>
+                    <li>
+                        <a>팀 소개</a>
+                    </li>
+                    <li>
+                        <a>방명록</a>
+                    </li>
+                    <li>
+                        <a>소개하기</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section-member">
+            <ul>
+                <li class="section-member-card">
+                    <div>
+                        <div class="section-member-card-img">
+                            <img alt="..." src="./svg/image-regular.svg" />
+                        </div>
+                        <div class="section-member-card-member">
+                            <div class="section-member-card-member-info">
+                                <div class="section-member-card-member-info-name">이름</div>
+                                <span class="side-margin10">·</span>
+                                <div class="section-member-card-member-info-mbti">MBTI</div>
+                            </div>
+                            <div class="section-member-card-member-date">2024-03-02</div>
+                        </div>
+                        <div class="section-member-card-intro">
+                            <div class="section-member-card-intro-word">한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디</div>
+                            <div class="section-member-card-intro-intro">자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개</div>
+                        </div>
+                    </div>
+                    <div class="section-member-card-site">
+                        <div class="newtest"><a>https://github.com/</a></div>
+                        <div><a>https://velog.io/</a></div>
+                    </div>
+                </li>
+
+                <li class="section-member-card">
+                    <div>
+                        <div class="section-member-card-img">
+                            <img alt="..." src="./svg/image-regular.svg" />
+                        </div>
+                        <div class="section-member-card-member">
+                            <div class="section-member-card-member-info">
+                                <div class="section-member-card-member-info-name">이름</div>
+                                <span class="side-margin10">·</span>
+                                <div class="section-member-card-member-info-mbti">MBTI</div>
+                            </div>
+                            <div class="section-member-card-member-date">2024-03-02</div>
+                        </div>
+                        <div class="section-member-card-intro">
+                            <div class="section-member-card-intro-word">한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디</div>
+                            <div class="section-member-card-intro-intro">자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개</div>
+                        </div>
+                    </div>
+                    <div class="section-member-card-site">
+                        <div class="newtest"><a>https://github.com/</a></div>
+                        <div><a>https://velog.io/</a></div>
+                    </div>
+                </li>
+
+                <li class="section-member-card">
+                    <div>
+                        <div class="section-member-card-img">
+                            <img alt="..." src="./svg/image-regular.svg" />
+                        </div>
+                        <div class="section-member-card-member">
+                            <div class="section-member-card-member-info">
+                                <div class="section-member-card-member-info-name">이름</div>
+                                <span class="side-margin10">·</span>
+                                <div class="section-member-card-member-info-mbti">MBTI</div>
+                            </div>
+                            <div class="section-member-card-member-date">2024-03-02</div>
+                        </div>
+                        <div class="section-member-card-intro">
+                            <div class="section-member-card-intro-word">한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디</div>
+                            <div class="section-member-card-intro-intro">자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개</div>
+                        </div>
+                    </div>
+                    <div class="section-member-card-site">
+                        <div class="newtest"><a>https://github.com/</a></div>
+                        <div><a>https://velog.io/</a></div>
+                    </div>
+                </li>
+
+                <li class="section-member-card">
+                    <div>
+                        <div class="section-member-card-img">
+                            <img alt="..." src="./svg/image-regular.svg" />
+                        </div>
+                        <div class="section-member-card-member">
+                            <div class="section-member-card-member-info">
+                                <div class="section-member-card-member-info-name">이름</div>
+                                <span class="side-margin10">·</span>
+                                <div class="section-member-card-member-info-mbti">MBTI</div>
+                            </div>
+                            <div class="section-member-card-member-date">2024-03-02</div>
+                        </div>
+                        <div class="section-member-card-intro">
+                            <div class="section-member-card-intro-word">한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디</div>
+                            <div class="section-member-card-intro-intro">자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개</div>
+                        </div>
+                    </div>
+                    <div class="section-member-card-site">
+                        <div class="newtest"><a>https://github.com/</a></div>
+                        <div><a>https://velog.io/</a></div>
+                    </div>
+                </li>
+
+                <li class="section-member-card">
+                    <div>
+                        <div class="section-member-card-img">
+                            <img alt="..." src="./svg/image-regular.svg" />
+                        </div>
+                        <div class="section-member-card-member">
+                            <div class="section-member-card-member-info">
+                                <div class="section-member-card-member-info-name">이름</div>
+                                <span class="side-margin10">·</span>
+                                <div class="section-member-card-member-info-mbti">MBTI</div>
+                            </div>
+                            <div class="section-member-card-member-date">2024-03-02</div>
+                        </div>
+                        <div class="section-member-card-intro">
+                            <div class="section-member-card-intro-word">한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디</div>
+                            <div class="section-member-card-intro-intro">자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개</div>
+                        </div>
+                    </div>
+                    <div class="section-member-card-site">
+                        <div class="bottom-margin10"><a>https://github.com/</a></div>
+                        <div><a>https://velog.io/</a></div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <section class="section-team">
+        <div class="section-team-container">
+            <div class="section-team-container-section border-top-01">
+                <h1>팀 소개</h1>
+                <div>
+                    <ul>
+                        <li>팀 소개에 대해서 작성팀 소개에 대해서 작성팀 소개에 대해서 작성팀 소개에 대해서 작성</li>
+                        <li>팀 소개에 대해서 작성</li>
+                        <li>팀 소개에 대해서 작성</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-team-container-section border-top-02">
+                <h1>팀 목표</h1>
+                <div>
+                    <ul>
+                        <li>팀 목표에 대해서 작성 해놓자</li>
+                        <li>팀 목표에 대해서 작성 해놓자</li>
+                        <li>팀 목표에 대해서 작성 해놓자</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-team-container-section border-top-03">
+                <h1>팀 규칙</h1>
+                <div>
+                    <ul>
+                        <li>팀 규칙에 대해서 작성</li>
+                        <li>팀 규칙에 대해서 작성</li>
+                        <li>팀 규칙에 대해서 작성</li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">김창민</h5>
-                    <p class="card-text">28세</p>
+    </section>
+
+    <section class="section-guest">
+        <div class="section-guest-container">
+            <div class="section-guest-container-flex">
+                <div>
+                    <label for="replyName">이름</label>
+                    <input id="replyName" type="text" placeholder="이름" />
+                </div>
+                <div>
+                    <label for="comment">방명록</label>
+                    <textarea id="comment" placeholder="방명록을 입력해주세요"></textarea>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2F4264cabe-9a72-4f58-ac48-fbe91f215ef7%2F%25EC%259C%25A0%25EA%25B7%25A0%25ED%2595%259C-%25EC%25A6%259D%25EB%25AA%2585%25EC%2582%25AC%25EC%25A7%2584.jpg?table=block&id=8673d13a-0214-4ad5-b4ee-e6cfc6775239&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=830&userId=&cache=v2"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">유균한</h5>
-                    <p class="card-text">30세</p>
-                </div>
+            <div class="section-guest-container-btn">
+                <button class="section-guest-container-btn-add">등록하기</button>
             </div>
         </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">김경민</h5>
-                    <p class="card-text">25세</p>
+
+        <ul class="section-guest-list">
+            <li>
+                <div class="section-guest-list-container">
+                    <div class="section-guest-list-container-flex">
+                        <div class="section-guest-list-name">유균한</div>
+                        <span class="side-margin10">·</span>
+                        <div class="section-guest-list-date">2024-02-05</div>
+                    </div>
+                    <div class="section-guest-list-content">댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다</div>
                 </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2F59e0f203-980d-4812-b457-b187c9d65366%2FIMG_1405.jpg?table=block&id=b37c634a-73ca-48c2-a148-e4376e9305a6&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=2000&userId=&cache=v2"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">박태순</h5>
-                    <p class="card-text">34세</p>
+            </li>
+
+            <li>
+                <div class="section-guest-list-container">
+                    <div class="section-guest-list-container-flex">
+                        <div class="section-guest-list-name">유균한</div>
+                        <span class="side-margin10">·</span>
+                        <div class="section-guest-list-date">2024-02-05</div>
+                    </div>
+                    <div class="section-guest-list-content">댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다</div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- /팀목표 카드 -->
-    <div class="card border-secondary mb-3" style="max-width: 18rem;">
-        <div class="card-header">팀 목표</div>
-        <div class="card-body text-dark">
-          <h5 class="card-title">오브젝트</h5>
-          <p class="card-text">우리팀 짱</p>
-        </div>
-        <div class="card border-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header">팀 규칙</div>
-            <div class="card-body text-dark">
-              <h5 class="card-title">약속시간</h5>
-              <p class="card-text">점심시간 : 13:00 ~ 14:00</p>
-            </div>
-            <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                <div class="card-header">MBTI</div>
-                <div class="card-body text-dark">
-                  <h5 class="card-title">T 5</h5>
-                  <p class="card-text">ISTJ, ESTJ, iSTP, ESTP, INTP</p>
+            </li>
+
+            <li>
+                <div class="section-guest-list-container">
+                    <div class="section-guest-list-container-flex">
+                        <div class="section-guest-list-name">유균한</div>
+                        <span class="side-margin10">·</span>
+                        <div class="section-guest-list-date">2024-02-05</div>
+                    </div>
+                    <div class="section-guest-list-content">댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다</div>
                 </div>
-    <!-- /방명록 -->
+            </li>
+        </ul>
+    </section>
+    <script>
+        let temp = `<li id=123>test</li>`
+    </script>
+
+</body>
+
+<!-- <body>
     <div class="form-brd">
         <h2>방명록</h2>
         <tr>
@@ -153,11 +271,6 @@
             <td class="form-btn"><button type="button" class="btn btn-outline-dark">글쓰기</button></td>
         </tr>
     </div>
-        
-    </div>
-    
-
-
-</body>
+</body> -->
 
 </html>
