@@ -13,12 +13,8 @@
 
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
-        import { query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, query, where, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
@@ -29,14 +25,17 @@
             messagingSenderId: "1016569423981",
             appId: "1:1016569423981:web:4742c10d53bc9ad4ef7764",
             measurementId: "G-2ND0Q8WYC3"
+
         };
 
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const storage = getStorage(app);
 
         //Query String - id 값 가져오기
-        const Keydata = new URLSearchParams(location.search).get('date');
+        const Keydata = new URLSearchParams(location.search).get('id');
+        console.log("Keydata : ", Keydata);
 
         //데이터 넘길 변수 (9개)
         let name;
@@ -52,8 +51,9 @@
         //DB에서 id 값에 맞는 특정 데이터 가져오기
         const q = query(
             collection(db, 'post'),
-            // where('date', '==', Keydata)
+            where('date', '==', Keydata)
         );
+
         const querySnapshot = await getDocs(q);
 
         querySnapshot.forEach((el) => {
@@ -61,7 +61,7 @@
             name = el.data().name;
             mbti = el.data().mbti;
             pw = el.data().pw;
-            img = el.data().img;
+            //img = el.data().img;
             blog = el.data().blog;
             github = el.data().github;
             word = el.data().word;
@@ -74,33 +74,43 @@
 
         //DB에서 가져온 데이터 화면에 보여주기
         $("#name").val(name);
-            $("#mbti").val(mbti);
-            //$("#pw").val(pw);
-            //$("#img").val(img);
-            $("#img2").val(img); // 이미지 url 입력창
-            //$("#picture").attr("src", img);
-            $("#thumbnail").attr("src", img); 
-            $("#blog").val(blog);
-            $("#github").val(github);
-            $("#word").val(word);
-            $("#intro").val(intro);
-            $("#date").val(date);
+        $("#mbti").val(mbti);
+        //$("#pw").val(pw);
+
+        // 18일 할일 2 : 여기 데이터 조회
+        //$("#img").val(img);
+        //$("#img2").val(img); // 이미지 url 입력창
+        //$("#picture").attr("src", img);
+        
+        
+        $("#thumbnail").attr("src", img);
+        $("#blog").val(blog);
+        $("#github").val(github);
+        $("#word").val(word);
+        $("#intro").val(intro);
+        $("#date").val(date);
 
         // 현재 날짜, 시간 을 "YYYY-MM-DD hh:mm:ss" format 으로 변경하는 function
         function dateFormat(date) {
 
             let dateFormat = date.getFullYear() +
 
-                '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) +
-                '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate())) +
-                ' ' + ((date.getHours()) < 9 ? "0" + (date.getHours()) : (date.getHours())) +
-                ':' + ((date.getMinutes()) < 9 ? "0" + (date.getMinutes()) : (date.getMinutes())) +
-                ':' + ((date.getSeconds()) < 9 ? "0" + (date.getSeconds()) : (date.getSeconds()));
+                // '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) +
+                // '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate())) +
+                // ' ' + ((date.getHours()) < 9 ? "0" + (date.getHours()) : (date.getHours())) +
+                // ':' + ((date.getMinutes()) < 9 ? "0" + (date.getMinutes()) : (date.getMinutes())) +
+                // ':' + ((date.getSeconds()) < 9 ? "0" + (date.getSeconds()) : (date.getSeconds()));
+
+                + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) +
+                + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate())) +
+                + ((date.getHours()) < 9 ? "0" + (date.getHours()) : (date.getHours())) +
+                + ((date.getMinutes()) < 9 ? "0" + (date.getMinutes()) : (date.getMinutes())) +
+                + ((date.getSeconds()) < 9 ? "0" + (date.getSeconds()) : (date.getSeconds()));
 
             return dateFormat;
         }
 
-        console.log(dateFormat(new Date())); // 날짜 형식 변환 테스트 완료
+        // console.log(dateFormat(new Date())); // 날짜 형식 변환 테스트 완료
 
         // 수정 버튼 클릭 시
         $('#writeBtn').click(async function () {
@@ -108,40 +118,56 @@
             if ($('#name').val() === "") {
                 alert("이름을 입력해주세요.")
                 return;
-            } else if ($('#mbti').val() === ""){
+            } else if ($('#mbti').val() === "") {
                 alert("MBTI를 입력해주세요.")
                 return;
-            } else if ($('#mbti').val() === ""){
+            } else if ($('#mbti').val() === "") {
                 alert("MBTI를 입력해주세요.")
                 return;
-            } else if ($('#img2').val() === ""){
+            } else if ($('#img').val() === "") {
                 alert("이미지를 입력해주세요.")
                 return;
-            } else if ($('#blog').val() === ""){
+            } else if ($('#blog').val() === "") {
                 alert("블로그 주소를 입력해주세요.")
                 return;
-            } else if ($('#github').val() === ""){
+            } else if ($('#github').val() === "") {
                 alert("깃허브 주소를 입력해주세요.")
                 return;
-            } else if ($('#word').val() === ""){
+            } else if ($('#word').val() === "") {
                 alert("한마디를 입력해주세요.")
                 return;
-            } else if ($('#intro').val() === ""){
+            } else if ($('#intro').val() === "") {
                 alert("자기소개를 입력해주세요.")
                 return;
             }
+
+            // img 스토리지에 업로드
+            const imgFile = document.querySelector('#img').files[0];
+            //console.log("imgFile : ", imgFile);
+            //const storageRef = storage.ref(storage, "images/" + imgFile.name); // import firebase v9 이상부터 storage.ref 대신 아래 두줄로 변경
+            const storageRef = ref(storage, `post/${Keydata}`)
+            const upload = uploadBytes(storageRef, imgFile);
+
+            
+            console.log("<<<<storageRef>>>> : ", storageRef);
+            console.log(storageRef._location.path_);
+
 
             // 새로 입력된 데이터 저장
             let name_change = $('#name').val();
             let mbti_change = $('#mbti').val();
             // let pw_change = $('#pw').val();
-            let img_change = $('#img2').val();
+            // let img_change = $('#img2').val();
             let blog_change = $('#blog').val();
             let github_change = $('#github').val();
             let word_change = $('#word').val();
             let intro_change = $('#intro').val();
             let date_change = $('#date').val();
 
+            // 18일 할일 1 : 이미지 URL 체크
+            let img_change = (storageRef._location.path_);
+
+            //////////////////////////////////////////////////////////////////////////////////////////////
             // const storage = getStorage(app);
 
             //// img 선택 시
@@ -171,18 +197,19 @@
             //     })
             // });
             //
+            //////////////////////////////////////////////////////////////////////////////////////////////
 
-            // const postRef = doc(db, "post", Keydata);
-            const postRef = doc(db, "post", "20240415190000");
+            const postRef = doc(db, "post", Keydata);
+            //const postRef = doc(db, "post", "20240415190000");
 
             await updateDoc(postRef, {
-                  name   : name_change
-                , mbti   : mbti_change
-                , img    : img_change
-                , blog   : blog_change
-                , github : github_change
-                , word   : word_change
-                , intro  : intro_change
+                name: name_change
+                , mbti: mbti_change
+                , img: img_change
+                , blog: blog_change
+                , github: github_change
+                , word: word_change
+                , intro: intro_change
                 // , date   : date_change
             });
 
@@ -190,9 +217,9 @@
             checkUnload = false;
 
             alert('수정이 완료되었습니다.');
-            location.href = `./show.html`;
-            //location.href = `./show.html?date_id=${Keydata}`;
-            
+            //location.href = `./show.html`;
+            location.href = `./show.html?id=${Keydata}`;
+
         });
 
         // 페이지 이동 시 체크
@@ -201,9 +228,9 @@
             if (checkUnload) return "이 페이지를 벗어나면 수정된 내용은 저장되지 않습니다.";
 
         });
-        
+
         // 취소버튼 클릭 시
-        $('#cancelBtn').click(async function() { history.back(); })
+        $('#cancelBtn').click(async function () { history.back(); })
 
     </script>
 
@@ -273,9 +300,43 @@
     </main>
 
     <script>
+
+        // 기능구현은 했는데 스택이 쌓이는거처럼 왜 여러개가 잡히는지 모르겠음...
         $("#thumbnail").on("click", function () {
-            $("#img").click();
-        })
+
+            // console.log("<<사진 선택>>");
+
+            $("#img").click().on("change", function (event) {
+
+                // console.log("이미지 선택 = 1, 미선택 = 0 >>>>" , event.target.files.length);
+
+                if (event.target.files.length == 0) {
+
+                    $("#thumbnail").removeAttr("src");
+
+                } else {
+
+                    const file = event.target.files;
+
+                    //console.log(e.target.files);
+
+                    var image = new Image();
+
+                    //console.log(window.URL.createObjectURL(file[0]));
+
+                    const ImageTempUrl = window.URL.createObjectURL(file[0]);
+
+                    $("#thumbnail").attr("src", ImageTempUrl);
+
+                    event.target.files.length = 0
+
+                    // console.log($('#img').val());
+                    // console.log($('#thumbnail').val());
+                    // console.log(ImageTempUrl);
+                }
+            })
+        });
+
     </script>
 </body>
 
