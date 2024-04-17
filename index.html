@@ -77,7 +77,8 @@
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-
+        
+        //방명록 Firebase 저장
         $('#Writingbtn').click(async function() {
             
             let name = $('#name').val();
@@ -89,7 +90,42 @@
             };
         await addDoc(collection(db,"guest"), doc);
         alert('작성완료!');
-        console.log('ㅇㅇ');
+        window.location.reload();
+        })
+
+        //Firebase에서 게시물 정보 가져와서 붙이기
+        let doc = await getDocs(collection(db,"post"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+
+            let img = row['img'];
+            let name = row['name'];
+            let word = row['word'];
+            console.log(row);
+
+            let temp_html = `
+            <div class="col">
+            <div class="card data-id=${newdate}">
+                <img src="${img}"class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">${name}</h5>
+                    <p class="card-text">${word}</p>
+                    </div>
+                </div>
+            </div>`;
+            $('#card').append(temp_html);
+            })
+             
+        // //카드 클릭시 show.html 페이지로 이동
+        $(document).ready(function(){
+            $('.card').on('click',function() {
+
+                const id = $(this).data('newdate')
+
+                const url = `./shwo.html?id=${newdate}`;
+
+                window.location.href = url;
+            })
         })
     </script>
 </head>
