@@ -84,14 +84,22 @@
 
 
   // Firebase 구성 정보 설정
+  // const firebaseConfig = {
+  //   apiKey: "AIzaSyDAEstAPrTLK7i9ryDBLy5yyKf9msmDdo8",
+  //   authDomain: "object-74938.firebaseapp.com",
+  //   projectId: "object-74938",
+  //   storageBucket: "object-74938.appspot.com",
+  //   messagingSenderId: "330048303032",
+  //   appId: "1:330048303032:web:2f7e6c5e27823610c3294d",
+  //   measurementId: "G-FEFD4LMS9N"
+  // };
   const firebaseConfig = {
-    apiKey: "AIzaSyDAEstAPrTLK7i9ryDBLy5yyKf9msmDdo8",
-    authDomain: "object-74938.firebaseapp.com",
-    projectId: "object-74938",
-    storageBucket: "object-74938.appspot.com",
-    messagingSenderId: "330048303032",
-    appId: "1:330048303032:web:2f7e6c5e27823610c3294d",
-    measurementId: "G-FEFD4LMS9N"
+    apiKey: "AIzaSyC5fyxcmxqsTSQQf8fDUGSXrBnloDB6aYA",
+    authDomain: "sparta-5784d.firebaseapp.com",
+    projectId: "sparta-5784d",
+    storageBucket: "sparta-5784d.appspot.com",
+    messagingSenderId: "853122067267",
+    appId: "1:853122067267:web:a0ca2f1cd399c002751df6"
   };
 
 
@@ -100,6 +108,7 @@
   const db = getFirestore(app);
 
   $("#introBtn").click(async function () {
+    
     var name = $('#name').val().trim();
     var pw = $('#pw').val().trim();
     var mbti = $('#mbti').val().trim();
@@ -108,6 +117,23 @@
     var github = $('#github').val().trim();
     var word = $('#word').val().trim();
     var intro = $('#intro').val().trim();
+
+    function getDateFormat() {
+
+      let now = new Date();
+      let year = now.getFullYear();
+      let month = now.getMonth() + 1 < 10 ? `0${now.getMonth() + 1}` : now.getMonth() + 1;
+      let date = now.getDate() < 10 ? `0${now.getDate()}` : now.getDate();
+      let hours = now.getHours() < 10 ? `0${now.getHours()}` : now.getHours();
+      let min = now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes();
+      let sec = now.getSeconds() < 10 ? `0${now.getSeconds()}` : now.getSeconds();
+      let today = `${year}-${month}-${date}`;
+      let id = `${year}${month}${date}${hours}${min}${sec}`;
+
+      return [today, id];
+    }
+
+    let [date, id] = getDateFormat();
 
     //유효성 검사
     if (name === "" || pw === "" || mbti === "" || img === "" || blog === "" || github === "" || word === "" || intro === "") {
@@ -124,6 +150,8 @@
       'github': github,
       'word': word,
       'intro': intro,
+      "date": date,
+      "id": id
     };
 
     try {
