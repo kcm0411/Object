@@ -283,11 +283,24 @@ main {
   position: relative;
 }
 
-.section-reply-container-flex label {
+.section-reply-container-flex > div > input:last-child {
+  margin-top: 22.5px;
+}
+
+.section-reply-lable1 {
   margin-left: 13.5px;
   padding: 0 5px;  
   position: absolute;
   top: -13px;
+  color: #7AC142; 
+  background-color: white; 
+}
+
+.section-reply-lable2 {
+  margin-left: 13.5px;
+  padding: 0 5px;  
+  position: absolute;
+  top: 50.5px;
   color: #7AC142; 
   background-color: white; 
 }

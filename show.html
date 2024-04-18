@@ -61,11 +61,13 @@
     <div class="section-reply-container">
       <div class="section-reply-container-flex">
         <div>
-          <label for="replyName">이름</label>
+          <label for="replyName" class="section-reply-lable1">이름</label>
           <input id="replyName" type="text" placeholder="이름" />
+          <label for="replyPW" class="section-reply-lable2">비밀번호</label>
+          <input id="replyPW" type="password" placeholder="비밀번호" />
         </div>
         <div>
-          <label for="comment">댓글</label>
+          <label for="comment" class="section-reply-lable1">댓글</label>
           <textarea id="comment" placeholder="댓글을 입력해주세요"></textarea>
         </div>
       </div>
@@ -73,16 +75,14 @@
         <button id="registrationBtn" class="section-reply-container-btn-add">등록하기</button>
       </div>
     </div>
-    
-    <ul id="replyList" class="section-reply-list">
-      
-    </ul>
+
+    <ul id="replyList" class="section-reply-list"></ul>
   </section>
 
   <script type="module">
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, doc, deleteDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC5fyxcmxqsTSQQf8fDUGSXrBnloDB6aYA",
@@ -111,11 +111,6 @@
       return [today, id];
     }
 
-    // const q = query(
-    //   collection(db, "reply"),
-    //   where("postID", "==", querystring id값),
-    //   orderBy("id")
-    // );
     const q = query(collection(db, "reply"), orderBy("id"))
     let replyList = await getDocs(q);
 
@@ -150,9 +145,10 @@
 
     });
 
-    $("#registrationBtn").on("click",async function () {
+    $("#registrationBtn").on("click", async function () {
 
       let name = $("#replyName").val();
+      let pw = $("#replyPW").val();
       let comment = $("#comment").val();
 
       if (!name || !comment) {
@@ -164,14 +160,13 @@
       let [date, id] = getDateFormat();
       let data = {
         "id": id,
+        "pw": pw,
         "name": name,
         "comment": comment,
         "date": date,
-        // index에서 show페이지 보내기 완료되면 해당 querystring id값 가져와서 넣어주기
-        // "postID": querystring id값
       };
 
-      await addDoc(collection(db, "reply"), data);
+      await setDoc(doc(db, "reply", id), data);
 
       let html = `<li id=${data.id}>
         <div class="section-reply-list-container">
@@ -197,18 +192,105 @@
       </li>`;
 
       $("#replyList").append(html);
+      $("#replyName").val("");
+      $("#replyPW").val("");
+      $("#comment").val("");
+
+      $("#replyList > li div.section-reply-list-container-flex > button").on("click", function () {
+        $(this).parent().parent().find(".show-reply-modal").show();
+        $("#replyList > li div.section-reply-list-container-flex > button").attr("disabled", true);
+
+        $(this).parent().parent().find(".show-reply-modal > div.show-reply-modal-flex > button.show-reply-modal-cancle").on("click", function () {
+          $(this).parent().parent().hide();
+          $("#replyList > li div.section-reply-list-container-flex > button").attr("disabled", false);
+        });
+
+        $(this).parent().parent().find(".show-reply-modal > div.show-reply-modal-flex > button.show-reply-modal-check").on("click", async function () {
+
+          let pw = $(this).parent().parent().find("input").val();
+          let id = $(this).parent().parent().parent().parent().attr("id");
+
+          if (!pw) {
+            alert("비밀번호를 입력해주세요");
+
+            return
+          }
+
+          let check = false;
+          const q = query(
+            collection(db, "reply"),
+            where("id", "==", id),
+            where("pw", "==", pw)
+          );
+          let result = await getDocs(q);
+
+          result.forEach((el) => {
+            if (el.data()) {
+              check = true;
+            }
+          });
+
+          if (!check) {
+            alert("비밀번호가 일치하지 않습니다");
+
+            return
+          }
+
+          await deleteDoc(doc(db, "reply", id));
+          $(this).parent().parent().parent().parent().remove();
+
+        });
+
+      });
 
     });
 
     $("#replyList > li div.section-reply-list-container-flex > button").on("click", function () {
-      $(this).parent().parent().find(".show-reply-modal").toggle();
-      console.log($(this).parent().parent().find(".show-reply-modal > div.show-reply-modal-flex > button.show-reply-modal-cancle"))
-      // $(this).parent().parent().find(".show-reply-modal > div.show-reply-modal-flex > button#replyModalCancle")
+      $(this).parent().parent().find(".show-reply-modal").show();
+      $("#replyList > li div.section-reply-list-container-flex > button").attr("disabled", true);
+
+      $(this).parent().parent().find(".show-reply-modal > div.show-reply-modal-flex > button.show-reply-modal-cancle").on("click", function () {
+        $(this).parent().parent().hide();
+        $("#replyList > li div.section-reply-list-container-flex > button").attr("disabled", false);
+      });
+
+      $(this).parent().parent().find(".show-reply-modal > div.show-reply-modal-flex > button.show-reply-modal-check").on("click", async function () {
+
+        let pw = $(this).parent().parent().find("input").val();
+        let id = $(this).parent().parent().parent().parent().attr("id");
+
+        if (!pw) {
+          alert("비밀번호를 입력해주세요");
+
+          return
+        }
+
+        let check = false;
+        const q = query(
+          collection(db, "reply"),
+          where("id", "==", id),
+          where("pw", "==", pw)
+        );
+        let result = await getDocs(q);
+
+        result.forEach((el) => {
+          if (el.data()) {
+            check = true;
+          }
+        });
+
+        if (!check) {
+          alert("비밀번호가 일치하지 않습니다");
+
+          return
+        }
+
+        await deleteDoc(doc(db, "reply", id));
+        $(this).parent().parent().parent().parent().remove();
+
+      });
+
     });
-
-    // $().on("click", function () {
-
-    // });
 
   </script>
 </body>
