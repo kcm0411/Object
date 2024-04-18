@@ -103,12 +103,12 @@ main {
 }
 
 .section-member-card-img {
-  width: 100%;
+  width: 280px;
   height: 280px;
 }
 
 .section-member-card-img > img {
-  width: 100%;
+  width: 280px;
   height: 100%;
   object-fit: cover;
 }
@@ -227,11 +227,24 @@ main {
   position: relative;
 }
 
-.section-guest-container-flex label {
+.section-guest-container-flex > div > input:last-child {
+  margin-top: 22.5px;
+}
+
+.section-guest-lable1 {
   margin-left: 13.5px;
   padding: 0 5px;  
   position: absolute;
   top: -13px;
+  color: #7AC142; 
+  background-color: white; 
+}
+
+.section-guest-lable2 {
+  margin-left: 13.5px;
+  padding: 0 5px;  
+  position: absolute;
+  top: 50.5px;
   color: #7AC142; 
   background-color: white; 
 }
@@ -289,6 +302,7 @@ main {
   padding: 45px;
   border-radius: 20px;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+  transform: rotate(0);
 }
 
 .section-guest-list-container-flex {
@@ -312,4 +326,79 @@ main {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.section-guest-list-container-flex > button {
+  width: 50px;
+  height: 30px;
+  margin-left: auto;
+  color: white;
+  background: #dc3545;
+  border: 2px solid #dc3545;
+  border-radius: 1rem;
+  font-size: 14px;
+}
+
+.section-guest-list-container-flex > button:hover {
+  color: black;
+  background: #fff;
+  border: 2px solid #dc3545;
+  cursor: pointer;
+}
+
+.main-guest-modal {
+  width: 240px;
+  padding: 20px;
+  display: none;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+  position: fixed;
+  top: 20px;
+  right: 100px;
+}
+
+.main-guest-modal input {
+  width: 200px;
+  height: 40px;
+  padding: 0 20px; 
+  border: 0.3px solid #7AC142;
+  border-radius: 5px; 
+  outline: none;
+  font-size: 14px;
+}
+
+.main-guest-modal-flex {
+  margin: 20px 10px 0;
+  display: flex;
+}
+
+.main-guest-modal-cancle {
+  width: 50px;
+  height: 30px;
+  background-color: white;
+  border: none;
+  font-size: 14px;
+}
+
+.main-guest-modal-cancle:hover {
+  cursor: pointer;
+}
+
+.main-guest-modal-check {
+  width: 50px;
+  height: 30px;
+  margin-left: auto;
+  color: white;
+  background: #7AC142;
+  border: 2px solid #7AC142;
+  border-radius: 1rem;
+  font-size: 14px;
+}
+
+.main-guest-modal-check:hover {
+  color: #7AC142;
+  background: #fff;
+  border: 2px solid #7AC142;
+  cursor: pointer;
 }
