@@ -173,6 +173,7 @@ main {
   margin: 40px auto 0;
   display: flex;
   justify-content: flex-end;
+  transform: rotate(0);
 }
 
 .show-header-editBtn {
@@ -453,6 +454,63 @@ main {
 }
 
 .show-reply-modal-check:hover {
+  color: #7AC142;
+  background: #fff;
+  border: 2px solid #7AC142;
+  cursor: pointer;
+}
+
+.show-header-modal {
+  width: 240px;
+  padding: 20px;
+  display: none;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+  position: fixed;
+  top: 40px;
+  right: 20px;
+}
+
+.show-header-modal input {
+  width: 200px;
+  height: 40px;
+  padding: 0 20px; 
+  border: 0.3px solid #7AC142;
+  border-radius: 5px; 
+  outline: none;
+  font-size: 14px;
+}
+
+.show-header-modal-flex {
+  margin: 20px 10px 0;
+  display: flex;
+}
+
+.show-header-modal-cancle {
+  width: 50px;
+  height: 30px;
+  background-color: white;
+  border: none;
+  font-size: 14px;
+}
+
+.show-header-modal-cancle:hover {
+  cursor: pointer;
+}
+
+.show-header-modal-check {
+  width: 50px;
+  height: 30px;
+  margin-left: auto;
+  color: white;
+  background: #7AC142;
+  border: 2px solid #7AC142;
+  border-radius: 1rem;
+  font-size: 14px;
+}
+
+.show-header-modal-check:hover {
   color: #7AC142;
   background: #fff;
   border: 2px solid #7AC142;
