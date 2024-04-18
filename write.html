@@ -149,7 +149,7 @@
         date: date
       });
       alert('저장 완료');
-      window.location.reload();
+      location.href = `./show.html?id=${id}`;
     } catch (error) {
       console.error("Error adding document: ", error);
     }
