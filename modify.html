@@ -35,7 +35,6 @@
 
         //Query String - id 값 가져오기
         const Keydata = new URLSearchParams(location.search).get('id');
-        console.log("Keydata : ", Keydata);
 
         //데이터 넘길 변수 (9개)
         let name;
@@ -48,10 +47,12 @@
         let intro;
         let date;
 
+        let UploadFileUrl;
+
         //DB에서 id 값에 맞는 특정 데이터 가져오기
         const q = query(
             collection(db, 'post'),
-            where('date', '==', Keydata)
+            where('id', '==', Keydata)
         );
 
         const querySnapshot = await getDocs(q);
@@ -61,56 +62,25 @@
             name = el.data().name;
             mbti = el.data().mbti;
             pw = el.data().pw;
-            //img = el.data().img;
+            img = el.data().img;
             blog = el.data().blog;
             github = el.data().github;
             word = el.data().word;
             intro = el.data().intro;
             date = el.data().date;
 
-            console.log(el.data()) // Test : 불러오기 완료 (QueryString 협의해야함)
-
         });
 
         //DB에서 가져온 데이터 화면에 보여주기
-        $("#name").val(name);
-        $("#mbti").val(mbti);
-        //$("#pw").val(pw);
-
-        // 18일 할일 2 : 여기 데이터 조회
-        //$("#img").val(img);
-        //$("#img2").val(img); // 이미지 url 입력창
-        //$("#picture").attr("src", img);
-        
-        
-        $("#thumbnail").attr("src", img);
-        $("#blog").val(blog);
-        $("#github").val(github);
-        $("#word").val(word);
-        $("#intro").val(intro);
-        $("#date").val(date);
-
-        // 현재 날짜, 시간 을 "YYYY-MM-DD hh:mm:ss" format 으로 변경하는 function
-        function dateFormat(date) {
-
-            let dateFormat = date.getFullYear() +
-
-                // '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) +
-                // '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate())) +
-                // ' ' + ((date.getHours()) < 9 ? "0" + (date.getHours()) : (date.getHours())) +
-                // ':' + ((date.getMinutes()) < 9 ? "0" + (date.getMinutes()) : (date.getMinutes())) +
-                // ':' + ((date.getSeconds()) < 9 ? "0" + (date.getSeconds()) : (date.getSeconds()));
-
-                + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) +
-                + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate())) +
-                + ((date.getHours()) < 9 ? "0" + (date.getHours()) : (date.getHours())) +
-                + ((date.getMinutes()) < 9 ? "0" + (date.getMinutes()) : (date.getMinutes())) +
-                + ((date.getSeconds()) < 9 ? "0" + (date.getSeconds()) : (date.getSeconds()));
-
-            return dateFormat;
-        }
-
-        // console.log(dateFormat(new Date())); // 날짜 형식 변환 테스트 완료
+        $('#name').val(name);
+        $('#mbti').val(mbti);
+        $('#img').attr('src', img);
+        $('#thumbnail').attr('src', img);
+        $('#blog').val(blog);
+        $('#github').val(github);
+        $('#word').val(word);
+        $('#intro').val(intro);
+        $('#date').val(date);
 
         // 수정 버튼 클릭 시
         $('#writeBtn').click(async function () {
@@ -124,7 +94,7 @@
             } else if ($('#mbti').val() === "") {
                 alert("MBTI를 입력해주세요.")
                 return;
-            } else if ($('#img').val() === "") {
+            } else if (document.querySelector('img').src === "") {
                 alert("이미지를 입력해주세요.")
                 return;
             } else if ($('#blog').val() === "") {
@@ -141,85 +111,96 @@
                 return;
             }
 
-            // img 스토리지에 업로드
-            const imgFile = document.querySelector('#img').files[0];
-            //console.log("imgFile : ", imgFile);
-            //const storageRef = storage.ref(storage, "images/" + imgFile.name); // import firebase v9 이상부터 storage.ref 대신 아래 두줄로 변경
-            const storageRef = ref(storage, `post/${Keydata}`)
-            const upload = uploadBytes(storageRef, imgFile);
+            // img 스토리지에 업로드 + Url링크 받아오기
+            let imgFile = document.querySelector('#img').files[0];
 
+            // 이미지를 다른 것을 선택하지 않았을 때
+            // Upload를 한번 더 하게 되면 물리적으로 실제로 있는 파일이 아니라
+            // 해당 URL 주소를 한번 더 업로드 하는 것이기 때문에
+            // 로직을 그대로 할려면 Image URL 을 File object 로 변경하는 작업이 한번 더 필요해서
+            // 이미지를 변경했을때와 이미지를 한번 더 변경하지 않을 경우를 나눠서 처리
+
+            if (imgFile === undefined) {
+
+                // 이미지를 변경하지 않을 때 : File Upload 로직 x, DB Update만 진행
+                let name_change = $('#name').val();
+                let mbti_change = $('#mbti').val();
+                let blog_change = $('#blog').val();
+                let github_change = $('#github').val();
+                let word_change = $('#word').val();
+                let intro_change = $('#intro').val();
+                let date_change = $('#date').val();
+
+                const postRef = doc(db, "post", Keydata);
+
+                await updateDoc(postRef, {
+
+                      name: name_change
+                    , mbti: mbti_change
+                    , blog: blog_change
+                    , github: github_change
+                    , word: word_change
+                    , intro: intro_change
+
+                });
+
+                // 페이지 벗어날 때 확인하지 않음
+                checkUnload = false;
+
+                alert('수정이 완료되었습니다.');
+                location.href = `./show.html?id=${Keydata}`;
+
+            } else { // else문 : File Upload 로직 o, DB Update도 같이 진행
+
+                const storageRef = ref(storage, `images/${Keydata}`)
+                const upload = uploadBytes(storageRef, imgFile).then((snapshot) => {
+
+                    getDownloadURL(snapshot.ref).then((url) => {
+
+                        UploadFileUrl = url;
+
+                    }).then(async () => {
+
+                        // 새로 입력된 데이터 저장
+                        let name_change = $('#name').val();
+                        let mbti_change = $('#mbti').val();
+                        let img_change = UploadFileUrl;
+                        let blog_change = $('#blog').val();
+                        let github_change = $('#github').val();
+                        let word_change = $('#word').val();
+                        let intro_change = $('#intro').val();
+                        let date_change = $('#date').val();
+
+
+                        const postRef = doc(db, "post", Keydata);
+
+                        await updateDoc(postRef, {
+
+                              name: name_change
+                            , mbti: mbti_change
+                            , img: img_change
+                            , blog: blog_change
+                            , github: github_change
+                            , word: word_change
+                            , intro: intro_change
+
+                        });
+
+                    });
+
+                    // 페이지 벗어날 때 확인하지 않음
+                    checkUnload = false;
+
+                    alert('수정이 완료되었습니다.');
+                    location.href = `./show.html?id=${Keydata}`;
+
+                })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+
+            }
             
-            console.log("<<<<storageRef>>>> : ", storageRef);
-            console.log(storageRef._location.path_);
-
-
-            // 새로 입력된 데이터 저장
-            let name_change = $('#name').val();
-            let mbti_change = $('#mbti').val();
-            // let pw_change = $('#pw').val();
-            // let img_change = $('#img2').val();
-            let blog_change = $('#blog').val();
-            let github_change = $('#github').val();
-            let word_change = $('#word').val();
-            let intro_change = $('#intro').val();
-            let date_change = $('#date').val();
-
-            // 18일 할일 1 : 이미지 URL 체크
-            let img_change = (storageRef._location.path_);
-
-            //////////////////////////////////////////////////////////////////////////////////////////////
-            // const storage = getStorage(app);
-
-            //// img 선택 시
-            // const file = document.querySelector('#img').files[0];
-            // let img_new;
-
-            // const storageRef = ref(storage, 'images/' + file.name + date2); // 사진을 업로드하고
-            // uploadBytes(storageRef, file).then((snapshot) => {
-            //     console.log('Uploaded a blob or file!');
-
-            //     getDownloadURL(snapshot.ref).then((url) => { // url을 받는다
-            //         console.log('File available at', url);
-            //         // ...
-            //         img_new = url;
-            //     }).then(async () => {
-            //         const postRef = doc(db, "minp", "post" + date_id);
-
-            //         await updateDoc(postRef, {
-            //             title: titleRef,
-            //             content: contentRef,
-            //             img: img_new
-            //         });
-
-            //         console.log("img  :", img_new);
-            //         location.href = `./show.html?date_id=${date_id}`;
-            //         alert('작성 완료'); // 작성 완료라는 알람을 띄운다
-            //     })
-            // });
-            //
-            //////////////////////////////////////////////////////////////////////////////////////////////
-
-            const postRef = doc(db, "post", Keydata);
-            //const postRef = doc(db, "post", "20240415190000");
-
-            await updateDoc(postRef, {
-                name: name_change
-                , mbti: mbti_change
-                , img: img_change
-                , blog: blog_change
-                , github: github_change
-                , word: word_change
-                , intro: intro_change
-                // , date   : date_change
-            });
-
-            // 페이지 벗어날 때 확인하지 않음
-            checkUnload = false;
-
-            alert('수정이 완료되었습니다.');
-            //location.href = `./show.html`;
-            location.href = `./show.html?id=${Keydata}`;
-
         });
 
         // 페이지 이동 시 체크
@@ -230,7 +211,9 @@
         });
 
         // 취소버튼 클릭 시
-        $('#cancelBtn').click(async function () { history.back(); })
+        $('#cancelBtn').click(async function () {
+            history.back();
+        })
 
     </script>
 
@@ -266,12 +249,6 @@
             </div>
         </div>
 
-        <div id="imgbox" , class="modify-main-container">
-            <label for="img2">이미지</label>
-            <input id="img2" class="modify-main-container-title" type="text" placeholder="이미지 링크 주소를 입력해주세요" />
-            <img id="picture" src="" class="card-img-top" alt="...">
-        </div>
-
         <div class="write-container">
             <label for="blog">블로그 주소</label>
             <input id="blog" class="write-container-space500" type="text" placeholder="블로그 주소를 입력해주세요" />
@@ -300,29 +277,21 @@
     </main>
 
     <script>
-
-        // 기능구현은 했는데 스택이 쌓이는거처럼 왜 여러개가 잡히는지 모르겠음...
+        // 사진 영역 클릭 시 img 불러오기
         $("#thumbnail").on("click", function () {
-
-            // console.log("<<사진 선택>>");
 
             $("#img").click().on("change", function (event) {
 
-                // console.log("이미지 선택 = 1, 미선택 = 0 >>>>" , event.target.files.length);
-
+                // 사진 선택 x
                 if (event.target.files.length == 0) {
 
                     $("#thumbnail").removeAttr("src");
 
-                } else {
+                } else { // 사진 선택 o
 
                     const file = event.target.files;
 
-                    //console.log(e.target.files);
-
                     var image = new Image();
-
-                    //console.log(window.URL.createObjectURL(file[0]));
 
                     const ImageTempUrl = window.URL.createObjectURL(file[0]);
 
@@ -330,9 +299,6 @@
 
                     event.target.files.length = 0
 
-                    // console.log($('#img').val());
-                    // console.log($('#thumbnail').val());
-                    // console.log(ImageTempUrl);
                 }
             })
         });
