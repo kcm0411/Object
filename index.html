@@ -34,13 +34,9 @@
     </header>
 
     <main>
-        <div class="mycards">
-            <div id="card" class="row row-cols-1 row-cols-md-3 g-3">
-
-            </div>
-            <!-- <section class="section-member">
-            <ul>
-                <li class="section-member-card">
+        <section class="section-member">
+            <ul id="card">
+                <!-- <li class="section-member-card">
                     <div>
                         <div class="section-member-card-img">
                             <img alt="..." src="./svg/image-regular.svg" />
@@ -58,15 +54,15 @@
                             <div class="section-member-card-intro-intro">
                                 자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개
                             </div>
-                        </div>
-                    </div>
+                        </div> 
+                    </div> 
                     <div class="section-member-card-site">
                         <div class="newtest"><a>https://github.com/</a></div>
                         <div><a>https://velog.io/</a></div>
                     </div>
-                </li>
+                </li> -->
 
-                <li class="section-member-card">
+                <!-- <li class="section-member-card">
                     <div>
                         <div class="section-member-card-img">
                             <img alt="..." src="./svg/image-regular.svg" />
@@ -168,9 +164,9 @@
                         <div class="bottom-margin10"><a>https://github.com/</a></div>
                         <div><a>https://velog.io/</a></div>
                     </div>
-                </li>
-            </ul> -->
-            </section>
+                </li>-->
+            </ul>
+        </section>
     </main>
 
     <section class="section-team">
@@ -214,8 +210,8 @@
         <div class="section-guest-container">
             <div class="section-guest-container-flex">
                 <div>
-                    <label for="guestName">이름</label>
-                    <input id="guestName" type="text" placeholder="이름" />
+                    <label for="name">이름</label>
+                    <input id="name" type="text" placeholder="이름" />
                 </div>
                 <div>
                     <label for="comment">방명록</label>
@@ -225,10 +221,15 @@
             <div id="Writingbtn" class="section-guest-container-btn">
                 <button class="section-guest-container-btn-add">등록하기</button>
             </div>
+            <section class="section-reply">
+                <ul id="guestbox" class="section-reply-list">
+                    <div class="section-reply-list-container">
+                        <div class="section-reply-list-container-flex">
+                </ul>
         </div>
 
         <ul class="section-guest-list">
-            <li>
+            <!-- <li>
                 <div class="section-guest-list-container">
                     <div class="section-guest-list-container-flex">
                         <div class="section-guest-list-name">유균한</div>
@@ -265,7 +266,7 @@
                         댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다
                     </div>
                 </div>
-            </li>
+            </li> -->
         </ul>
     </section>
 
@@ -346,23 +347,7 @@
             }
 
         });
-
-        //방명록 Firebase 저장
-        $('#Writingbtn').click(async function () {
-
-            let name = $('#name').val();
-            let comment = $('#comment').val();
-
-            let doc = {
-                'name': name,
-                'comment': comment
-            };
-            await addDoc(collection(db, "guest"), doc);
-            alert('작성완료!');
-            window.location.reload();
-        })
-
-        // //Firebase에서 게시물 정보 가져와서 카드 붙이기
+        // //Firebase에서 게시물 정보 가져와서 게시물 붙이기
         let doc = await getDocs(collection(db, "post"));
         doc.forEach((doc) => {
             let row = doc.data();
@@ -378,24 +363,51 @@
             let id = row['id'];
             console.log(row);
 
+            // <li>태그 사용 시 <Ul>태그에 id=""값 주기!!
             let temp_html = `
-            <div class="col">
-                <a herf='./show.html'><div id="card">
-                <div class="card h-100">
-                    <img src="${img}"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">${name}</h5>
-                        <p class="card-text">${mbti}</p>
-                        <p class="card-text">${word}</p>
-                        <p class="card-text">${intro}</p>
+            
+            <li id=${id} "class="section-member-card">
+                <div>
+                        <div class="section-member-card-img">
+                            <img alt="..." src="${img}" />
+                        </div>
+                        <div class="section-member-card-member">
+                            <div class="section-member-card-member-info">
+                                <div class="section-member-card-member-info-name">${name}</div>
+                                <span class="side-margin10">·</span>
+                                <div class="section-member-card-member-info-mbti">${mbti}</div>
+                            </div>
+                            <div class="section-member-card-member-date">${date}</div>
+                        </div>
+                        <div class="section-member-card-intro">
+                            <div class="section-member-card-intro-word">${word}</div>
+                            <div class="section-member-card-intro-intro">${intro}
+                                
+                            </div>
+                        </div> 
+                    </div> 
+                    <div class="section-member-card-site">
+                        <div class="newtest"><a>${github}/</a></div>
+                        <div><a>${blog}</a></div>
                     </div>
-                </div>
-            </div>
-            </div></a>`;
-            $('#card').append(temp_html);
-        })
+                    </div>
+                    </li>`;
 
+            $('#card ').append(temp_html);
+        })
+        $(document).ready(function () {
+            $('#card li').on('click', function () {
+                // 클릭한 li의 id 값을 가져옵니다.
+                var clickedId = $(this).attr('id');
+
+                if (clickedId) {
+                    const newUrl = `./show.html?id=${clickedId}`;
+                    window.location.href = newUrl;
+                } else {
+                    console.log('ID 값이 없습니다.');
+                }
+            });
+        });
     </script>
 </body>
 
