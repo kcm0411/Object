@@ -74,7 +74,7 @@
   import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
   import { getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
   import { query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-  import { doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+  import { doc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
   // Firebase 구성 정보 설정
   const firebaseConfig = {
@@ -136,7 +136,7 @@
 
     // Firestore에 데이터 추가
     try {
-      await addDoc(collection(db, "post"), {
+      await setDoc(doc(db, "post", id), {
         name: name,
         pw: pw,
         mbti: mbti,
@@ -145,7 +145,8 @@
         github: github,
         word: word,
         intro: intro,
-        id: id
+        id: id,
+        date: date
       });
       alert('저장 완료');
       window.location.reload();
