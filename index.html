@@ -7,20 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
     <link rel="stylesheet" href="./css/index.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
     <header>
         <div class="main-header-container">
             <h1>오브젝트</h1>
             <nav>
-                <ul>
-                    <li>
+                <ul id="mainNav">
+                    <li id="userIntro">
                         <a>팀원 소개</a>
                     </li>
-                    <li>
+                    <li id="teamIntro">
                         <a>팀 소개</a>
                     </li>
-                    <li>
+                    <li id="guestBook">
                         <a>방명록</a>
                     </li>
                     <li>
@@ -49,7 +51,35 @@
                         </div>
                         <div class="section-member-card-intro">
                             <div class="section-member-card-intro-word">한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디</div>
-                            <div class="section-member-card-intro-intro">자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개</div>
+                            <div class="section-member-card-intro-intro">
+                                자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-member-card-site">
+                        <div class="newtest"><a>https://github.com/https://github.com/https://github.com/https://github.com/https://github.com/https://github.com/https://github.com/</a></div>
+                        <div><a>https://velog.io/</a></div>
+                    </div>
+                </li>
+
+                <li class="section-member-card">
+                    <div>
+                        <div class="section-member-card-img">
+                            <img alt="..." src="./svg/image-regular.svg" />
+                        </div>
+                        <div class="section-member-card-member">
+                            <div class="section-member-card-member-info">
+                                <div class="section-member-card-member-info-name">이름</div>
+                                <span class="side-margin10">·</span>
+                                <div class="section-member-card-member-info-mbti">MBTI</div>
+                            </div>
+                            <div class="section-member-card-member-date">2024-03-02</div>
+                        </div>
+                        <div class="section-member-card-intro">
+                            <div class="section-member-card-intro-word">한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디</div>
+                            <div class="section-member-card-intro-intro">
+                                자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개
+                            </div>
                         </div>
                     </div>
                     <div class="section-member-card-site">
@@ -73,7 +103,9 @@
                         </div>
                         <div class="section-member-card-intro">
                             <div class="section-member-card-intro-word">한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디</div>
-                            <div class="section-member-card-intro-intro">자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개</div>
+                            <div class="section-member-card-intro-intro">
+                                자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개
+                            </div>
                         </div>
                     </div>
                     <div class="section-member-card-site">
@@ -97,7 +129,9 @@
                         </div>
                         <div class="section-member-card-intro">
                             <div class="section-member-card-intro-word">한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디</div>
-                            <div class="section-member-card-intro-intro">자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개</div>
+                            <div class="section-member-card-intro-intro">
+                                자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개
+                            </div>
                         </div>
                     </div>
                     <div class="section-member-card-site">
@@ -121,31 +155,9 @@
                         </div>
                         <div class="section-member-card-intro">
                             <div class="section-member-card-intro-word">한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디</div>
-                            <div class="section-member-card-intro-intro">자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개</div>
-                        </div>
-                    </div>
-                    <div class="section-member-card-site">
-                        <div class="newtest"><a>https://github.com/</a></div>
-                        <div><a>https://velog.io/</a></div>
-                    </div>
-                </li>
-
-                <li class="section-member-card">
-                    <div>
-                        <div class="section-member-card-img">
-                            <img alt="..." src="./svg/image-regular.svg" />
-                        </div>
-                        <div class="section-member-card-member">
-                            <div class="section-member-card-member-info">
-                                <div class="section-member-card-member-info-name">이름</div>
-                                <span class="side-margin10">·</span>
-                                <div class="section-member-card-member-info-mbti">MBTI</div>
+                            <div class="section-member-card-intro-intro">
+                                자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개
                             </div>
-                            <div class="section-member-card-member-date">2024-03-02</div>
-                        </div>
-                        <div class="section-member-card-intro">
-                            <div class="section-member-card-intro-word">한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디</div>
-                            <div class="section-member-card-intro-intro">자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개</div>
                         </div>
                     </div>
                     <div class="section-member-card-site">
@@ -219,7 +231,9 @@
                         <span class="side-margin10">·</span>
                         <div class="section-guest-list-date">2024-02-05</div>
                     </div>
-                    <div class="section-guest-list-content">댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다</div>
+                    <div class="section-guest-list-content">
+                        댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다
+                    </div>
                 </div>
             </li>
 
@@ -230,7 +244,9 @@
                         <span class="side-margin10">·</span>
                         <div class="section-guest-list-date">2024-02-05</div>
                     </div>
-                    <div class="section-guest-list-content">댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다</div>
+                    <div class="section-guest-list-content">
+                        댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다
+                    </div>
                 </div>
             </li>
 
@@ -241,11 +257,70 @@
                         <span class="side-margin10">·</span>
                         <div class="section-guest-list-date">2024-02-05</div>
                     </div>
-                    <div class="section-guest-list-content">댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다</div>
+                    <div class="section-guest-list-content">
+                        댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다댓글내용입니다
+                    </div>
                 </div>
             </li>
         </ul>
     </section>
+
+    <script>
+
+        history.scrollRestoration = "manual";
+
+        function scrollSmooth(destination, duration) {
+
+            let start = window.scrollY || window.pageYOffset;
+            let distance = destination - start;
+            let startTime = null;
+
+            function scrollTo(timestamp) {
+                if (!startTime) {
+                    startTime = timestamp;
+                }
+
+                let progress = timestamp - startTime;
+                let percentComplete = Math.min(progress / duration, 1);
+
+                window.scrollTo(0, start + distance * percentComplete);
+
+                if (progress < duration) {
+                    window.requestAnimationFrame(scrollTo);
+                }
+
+            }
+
+            window.requestAnimationFrame(scrollTo);
+        }
+
+        $("#mainNav > li").on("click", function () {
+
+            let listID = $(this).attr("id");
+            let menuHeight = document.querySelector("body > header").offsetHeight;
+            let location;
+
+            switch (listID) {
+                case "userIntro":
+                    location = document.querySelector("body > main > section > ul").offsetTop;
+                    scrollSmooth(location - menuHeight, 1000);
+
+                    break;
+                case "teamIntro":
+                    location = document.querySelector("body > section.section-team > div").offsetTop;
+                    scrollSmooth(location - menuHeight, 1000);
+
+                    break;
+                case "guestBook":
+                    location = document.querySelector("body > section.section-guest > div").offsetTop;
+                    scrollSmooth(location - menuHeight, 1000);
+
+                    break;
+            }
+
+        });
+
+    </script>
 </body>
 
 </html>
