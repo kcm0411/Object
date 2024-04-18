@@ -12,8 +12,26 @@
 
 <body>
   <div class="show-header">
-    <button class="show-header-editBtn">수정</button>
-    <button class="show-header-deleteBtn">삭제</button>
+    <button id="showEditBtn" class="show-header-editBtn">수정</button>
+    <button id="showDelBtn" class="show-header-deleteBtn">삭제</button>
+    <div id="headerModalEdit" class="show-header-modal">
+      <div>
+        <input type="password" placeholder="비밀번호를 입력해주세요" />
+      </div>
+      <div class="show-header-modal-flex">
+        <button id="editModalCancle" class="show-header-modal-cancle">취소</button>
+        <button id="editModalCheck" class="show-header-modal-check">확인</button>
+      </div>
+    </div>
+    <div id="headerModalDel" class="show-header-modal">
+      <div>
+        <input type="password" placeholder="비밀번호를 입력해주세요" />
+      </div>
+      <div class="show-header-modal-flex">
+        <button id="delModalCancle" class="show-header-modal-cancle">취소</button>
+        <button id="delModalCheck" class="show-header-modal-check">확인</button>
+      </div>
+    </div>
   </div>
 
   <main>
@@ -134,6 +152,102 @@
       $("#intro").text(data.intro);
 
     });
+
+    $("#showEditBtn").on("click", function () {
+      console.log("edit")
+      $("#headerModalEdit").show();
+      $("#showEditBtn").attr("disabled", true);
+      $("#showDelBtn").attr("disabled", true);
+    });
+
+    $("#showDelBtn").on("click", function () {
+      console.log("del")
+      $("#headerModalDel").show();
+      $("#showDelBtn").attr("disabled", true);
+      $("#showEditBtn").attr("disabled", true);
+    });
+
+    $("#editModalCancle").on("click", function () {
+      $("#headerModalEdit").hide();
+      $("#showEditBtn").attr("disabled", false);
+      $("#showDelBtn").attr("disabled", false);
+    });
+
+    $("#delModalCancle").on("click", function () {
+      $("#headerModalDel").hide();
+      $("#showDelBtn").attr("disabled", false);
+      $("#showEditBtn").attr("disabled", false);
+    });
+
+    $("#editModalCheck").on("click", async function () {
+
+      let postPW = $("#headerModalEdit input").val();
+
+      if (!postPW) {
+        alert("비밀번호를 입력해주세요");
+
+        return
+      }
+
+      let check = false;
+      const q = query(
+        collection(db, "post"),
+        where("id", "==", postID),
+        where("pw", "==", postPW)
+      );
+      let result = await getDocs(q);
+
+      result.forEach( (el) => {
+        if (el.data()) {
+          check = true;
+        }
+      });
+
+      if (!check) {
+        alert("비밀번호가 일치하지 않습니다");
+
+        return
+      }
+
+      location.href = `./modify.html?id=${postID}`;
+
+    });
+
+    $("#delModalCheck").on("click", async function () {
+      
+      let postPW = $("#headerModalDel input").val();
+
+      if (!postPW) {
+        alert("비밀번호를 입력해주세요");
+
+        return
+      }
+
+      let check = false;
+      const q = query(
+        collection(db, "post"),
+        where("id", "==", postID),
+        where("pw", "==", postPW)
+      );
+      let result = await getDocs(q);
+
+      result.forEach( (el) => {
+        if (el.data()) {
+          check = true;
+        }
+      });
+
+      if (!check) {
+        alert("비밀번호가 일치하지 않습니다");
+
+        return
+      }
+
+      await deleteDoc(doc(db, "post", postID));
+
+      location.href = "./index.html";
+
+    })
 
     const q = query(collection(db, "reply"), orderBy("id"))
     let replyList = await getDocs(q);
