@@ -34,7 +34,11 @@
     </header>
 
     <main>
-        <section class="section-member">
+        <div class="mycards">
+            <div id="card" class="row row-cols-1 row-cols-md-3 g-3">
+
+            </div>
+            <!-- <section class="section-member">
             <ul>
                 <li class="section-member-card">
                     <div>
@@ -57,7 +61,7 @@
                         </div>
                     </div>
                     <div class="section-member-card-site">
-                        <div class="newtest"><a>https://github.com/https://github.com/https://github.com/https://github.com/https://github.com/https://github.com/https://github.com/</a></div>
+                        <div class="newtest"><a>https://github.com/</a></div>
                         <div><a>https://velog.io/</a></div>
                     </div>
                 </li>
@@ -165,8 +169,8 @@
                         <div><a>https://velog.io/</a></div>
                     </div>
                 </li>
-            </ul>
-        </section>
+            </ul> -->
+            </section>
     </main>
 
     <section class="section-team">
@@ -218,7 +222,7 @@
                     <textarea id="comment" placeholder="방명록을 입력해주세요"></textarea>
                 </div>
             </div>
-            <div class="section-guest-container-btn">
+            <div id="Writingbtn" class="section-guest-container-btn">
                 <button class="section-guest-container-btn-add">등록하기</button>
             </div>
         </div>
@@ -265,7 +269,30 @@
         </ul>
     </section>
 
-    <script>
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { query } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성정보 설정
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyB3ookWJ_UhcAQN3g_GFe8igPGrRhhSEPM",
+            authDomain: "object-4dce6.firebaseapp.com",
+            projectId: "object-4dce6",
+            storageBucket: "object-4dce6.appspot.com",
+            messagingSenderId: "1016569423981",
+            appId: "1:1016569423981:web:4742c10d53bc9ad4ef7764",
+            measurementId: "G-2ND0Q8WYC3"
+
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
         history.scrollRestoration = "manual";
 
@@ -319,6 +346,55 @@
             }
 
         });
+
+        //방명록 Firebase 저장
+        $('#Writingbtn').click(async function () {
+
+            let name = $('#name').val();
+            let comment = $('#comment').val();
+
+            let doc = {
+                'name': name,
+                'comment': comment
+            };
+            await addDoc(collection(db, "guest"), doc);
+            alert('작성완료!');
+            window.location.reload();
+        })
+
+        // //Firebase에서 게시물 정보 가져와서 카드 붙이기
+        let doc = await getDocs(collection(db, "post"));
+        doc.forEach((doc) => {
+            let row = doc.data();
+
+            let img = row['img'];
+            let name = row['name'];
+            let mbti = row['mbti'];
+            let date = row['date'];
+            let word = row['word'];
+            let intro = row['intro'];
+            let github = row['github'];
+            let blog = row['blog'];
+            let id = row['id'];
+            console.log(row);
+
+            let temp_html = `
+            <div class="col">
+                <a herf='./show.html'><div id="card">
+                <div class="card h-100">
+                    <img src="${img}"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${name}</h5>
+                        <p class="card-text">${mbti}</p>
+                        <p class="card-text">${word}</p>
+                        <p class="card-text">${intro}</p>
+                    </div>
+                </div>
+            </div>
+            </div></a>`;
+            $('#card').append(temp_html);
+        })
 
     </script>
 </body>
