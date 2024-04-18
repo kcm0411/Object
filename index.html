@@ -39,6 +39,10 @@
         </section>
     </main>
 
+    <div id="scroll" class="scroll-icon">
+        <img alt="..." src="./svg/chevron-up-solid.svg" />
+    </div>
+
     <section class="section-team">
         <div class="section-team-container">
             <div class="section-team-container-section border-top-01">
@@ -164,6 +168,10 @@
 
             window.requestAnimationFrame(scrollTo);
         }
+
+        $("#scroll").on("click", function () {
+            window.scrollTo(0, 0);
+        });
 
         $("#mainNav > li").on("click", function () {
 

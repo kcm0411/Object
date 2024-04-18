@@ -415,3 +415,14 @@ main {
   border: 2px solid #7AC142;
   cursor: pointer;
 }
+
+.scroll-icon {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 20px;
+  right: 5%;
+  cursor: pointer;
+}

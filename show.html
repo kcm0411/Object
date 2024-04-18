@@ -75,6 +75,10 @@
     </div>
   </main>
 
+  <div id="scroll" class="scroll-icon">
+    <img alt="..." src="./svg/chevron-up-solid.svg" />
+  </div>
+
   <section class="section-reply">
     <div class="section-reply-container">
       <div class="section-reply-container-flex">
@@ -132,6 +136,10 @@
     }
 
     const postID = new URLSearchParams(location.search).get("id");
+
+    $("#scroll").on("click", function () {
+      window.scrollTo(0, 0);
+    });
 
     const show = query(
       collection(db, "post"), 
