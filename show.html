@@ -248,8 +248,11 @@
       location.href = "./index.html";
 
     })
-
-    const q = query(collection(db, "reply"), orderBy("id"))
+    const q = query(
+      collection(db, "reply"),
+      where("postID", "==", postID),
+      orderBy("id")
+    );
     let replyList = await getDocs(q);
 
     replyList.forEach( (el) => {
@@ -302,6 +305,7 @@
         "name": name,
         "comment": comment,
         "date": date,
+        "postID": postID
       };
 
       await setDoc(doc(db, "reply", id), data);
