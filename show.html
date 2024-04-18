@@ -53,7 +53,7 @@
 
     <div class="show-container">
       <label for="intro">자기소개</label>
-      <div class="show-intro"></div>
+      <div id="intro" class="show-intro"></div>
     </div>
   </main>
 
@@ -85,12 +85,14 @@
     import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, doc, deleteDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyC5fyxcmxqsTSQQf8fDUGSXrBnloDB6aYA",
-      authDomain: "sparta-5784d.firebaseapp.com",
-      projectId: "sparta-5784d",
-      storageBucket: "sparta-5784d.appspot.com",
-      messagingSenderId: "853122067267",
-      appId: "1:853122067267:web:a0ca2f1cd399c002751df6"
+      apiKey: "AIzaSyDAEstAPrTLK7i9ryDBLy5yyKf9msmDdo8",
+      authDomain: "object-74938.firebaseapp.com",
+      databaseURL: "https://object-74938-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "object-74938",
+      storageBucket: "object-74938.appspot.com",
+      messagingSenderId: "330048303032",
+      appId: "1:330048303032:web:2f7e6c5e27823610c3294d",
+      measurementId: "G-FEFD4LMS9N"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -110,6 +112,28 @@
 
       return [today, id];
     }
+
+    const postID = new URLSearchParams(location.search).get("id");
+
+    const show = query(
+      collection(db, "post"), 
+      where("id", "==", postID)
+    );
+    let postData = await getDocs(show);
+
+    postData.forEach( (el) => {
+
+      let data = el.data();
+
+      $("#name").val(data.name);
+      $("#mbti").val(data.mbti);
+      $("#thumbnail").attr("src", data.img);
+      $("#blog").val(data.blog);
+      $("#github").val(data.github);
+      $("#word").val(data.word);
+      $("#intro").text(data.intro);
+
+    });
 
     const q = query(collection(db, "reply"), orderBy("id"))
     let replyList = await getDocs(q);
@@ -151,8 +175,8 @@
       let pw = $("#replyPW").val();
       let comment = $("#comment").val();
 
-      if (!name || !comment) {
-        alert("이름과 댓글을 모두 입력해주세요");
+      if (!name || !comment || !pw) {
+        alert("이름, 비밀번호, 댓글을 모두 입력해주세요");
 
         return
       }
