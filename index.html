@@ -35,33 +35,7 @@
 
     <main>
         <section class="section-member">
-            <ul id="card">
-                <!-- <li class="section-member-card">
-                    <div>
-                        <div class="section-member-card-img">
-                            <img alt="..." src="./svg/image-regular.svg" />
-                        </div>
-                        <div class="section-member-card-member">
-                            <div class="section-member-card-member-info">
-                                <div class="section-member-card-member-info-name">이름</div>
-                                <span class="side-margin10">·</span>
-                                <div class="section-member-card-member-info-mbti">MBTI</div>
-                            </div>
-                            <div class="section-member-card-member-date">2024-03-02</div>
-                        </div>
-                        <div class="section-member-card-intro">
-                            <div class="section-member-card-intro-word">한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디한마디</div>
-                            <div class="section-member-card-intro-intro">
-                                자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개
-                            </div>
-                        </div> 
-                    </div> 
-                    <div class="section-member-card-site">
-                        <div class="newtest"><a>https://github.com/</a></div>
-                        <div><a>https://velog.io/</a></div>
-                    </div>
-                </li> -->
-            </ul>
+            <ul id="card"></ul>
         </section>
     </main>
 
@@ -220,7 +194,6 @@
         let newDoc = await getDocs(collection(db, "post"));
         newDoc.forEach((doc) => {
             let row = doc.data();
-
             let img = row['img'];
             let name = row['name'];
             let mbti = row['mbti'];
@@ -234,7 +207,7 @@
             // <li>태그 사용 시 <Ul>태그에 id=""값 주기!!
             let temp_html = `
             
-            <li id=${id} "class="section-member-card">
+            <li id=${id} class="section-member-card">
                 <div>
                         <div class="section-member-card-img">
                             <img alt="..." src="${img}" />
