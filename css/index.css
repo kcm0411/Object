@@ -426,3 +426,8 @@ main {
   right: 5%;
   cursor: pointer;
 }
+
+.section-team-img {
+  text-align: center;
+  font-size: 100px;
+}
