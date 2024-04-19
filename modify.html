@@ -8,6 +8,64 @@
     <title>수정페이지</title>
     <link rel="stylesheet" href="./css/write.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- JQuery Import -->
+</head>
+
+<body>
+
+    <header>
+        <h1>수정 페이지</h1>
+    </header>
+
+    <main>
+
+        <div class="write-flex">
+
+            <div class="write-container">
+                <label for="name">이름</label>
+                <input id="name" class="write-container-space250" type="text" placeholder="이름을 입력해주세요" />
+            </div>
+
+            <div class="write-container side-margin50">
+                <label for="mbti">MBTI</label>
+                <input id="mbti" class="write-container-space130" type="text" placeholder="MBTI" />
+            </div>
+
+        </div>
+
+        <div class="write-container-img">
+            <label for="img">사진</label>
+            <input id="img" class="write-container-input-file" type="file" accept="image/*" />
+            <div class="write-container-thumbnail">
+                <img id="thumbnail" alt="..." src="" />
+            </div>
+        </div>
+
+        <div class="write-container">
+            <label for="blog">블로그 주소</label>
+            <input id="blog" class="write-container-space500" type="text" placeholder="블로그 주소를 입력해주세요" />
+        </div>
+
+        <div class="write-container">
+            <label for="github">깃허브 주소</label>
+            <input id="github" class="write-container-space500" type="text" placeholder="깃허브 주소를 입력해주세요" />
+        </div>
+
+        <div class="write-container">
+            <label for="word">한마디</label>
+            <input id="word" class="write-container-spaceAll" type="text" placeholder="한마디를 적어주세요" />
+        </div>
+
+        <div class="write-container">
+            <label for="intro">자기소개</label>
+            <textarea id="intro" placeholder="자기소개를 적어주세요"></textarea>
+        </div>
+
+        <div class="write-footer">
+            <button id="writeBtn" class="write-footer-introBtn" type="button">수정</button>
+            <button id="cancelBtn" class="write-footer-cancleBtn" type="button">취소</button>
+        </div>
+
+    </main>
 
     <script type="module">
 
@@ -135,7 +193,7 @@
 
                 await updateDoc(postRef, {
 
-                      name: name_change
+                    name: name_change
                     , mbti: mbti_change
                     , blog: blog_change
                     , github: github_change
@@ -176,7 +234,7 @@
 
                         await updateDoc(postRef, {
 
-                              name: name_change
+                            name: name_change
                             , mbti: mbti_change
                             , img: img_change
                             , blog: blog_change
@@ -200,7 +258,7 @@
                     })
 
             }
-            
+
         });
 
         // 페이지 이동 시 체크
@@ -215,68 +273,6 @@
             history.back();
         })
 
-    </script>
-
-</head>
-
-<body>
-
-    <header>
-        <h1>수정 페이지</h1>
-    </header>
-
-    <main>
-
-        <div class="write-flex">
-
-            <div class="write-container">
-                <label for="name">이름</label>
-                <input id="name" class="write-container-space250" type="text" placeholder="이름을 입력해주세요" />
-            </div>
-
-            <div class="write-container side-margin50">
-                <label for="mbti">MBTI</label>
-                <input id="mbti" class="write-container-space130" type="text" placeholder="MBTI" />
-            </div>
-
-        </div>
-
-        <div class="write-container-img">
-            <label for="img">사진</label>
-            <input id="img" class="write-container-input-file" type="file" accept="image/*" />
-            <div class="write-container-thumbnail">
-                <img id="thumbnail" alt="..." src="" />
-            </div>
-        </div>
-
-        <div class="write-container">
-            <label for="blog">블로그 주소</label>
-            <input id="blog" class="write-container-space500" type="text" placeholder="블로그 주소를 입력해주세요" />
-        </div>
-
-        <div class="write-container">
-            <label for="github">깃허브 주소</label>
-            <input id="github" class="write-container-space500" type="text" placeholder="깃허브 주소를 입력해주세요" />
-        </div>
-
-        <div class="write-container">
-            <label for="word">한마디</label>
-            <input id="word" class="write-container-spaceAll" type="text" placeholder="한마디를 적어주세요" />
-        </div>
-
-        <div class="write-container">
-            <label for="intro">자기소개</label>
-            <textarea id="intro" placeholder="자기소개를 적어주세요"></textarea>
-        </div>
-
-        <div class="write-footer">
-            <button id="writeBtn" class="write-footer-introBtn" type="button">수정</button>
-            <button id="cancelBtn" class="write-footer-cancleBtn" type="button">취소</button>
-        </div>
-
-    </main>
-
-    <script>
         // 사진 영역 클릭 시 img 불러오기
         $("#thumbnail").on("click", function () {
 
